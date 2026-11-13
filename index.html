@@ -1,20 +1,326 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Screen Tariff</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Screen Tariff — Sanction Your Distractions</title>
+  <meta name="description" content="Screen Tariff is a free app blocker that puts a short ad break between you and your most distracting apps. No signup, no subscription, no paywalls.">
   <style>
-    body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
-           background: #000; color: #fff; font-family: -apple-system, system-ui, sans-serif; text-align: center; }
-    h1 { font-size: 2.5rem; margin: 0 0 8px; }
-    p { color: #A1A1A6; margin: 0; }
+    :root {
+      --bg: #000000;
+      --card: #141416;
+      --card-border: #26262a;
+      --text: #ffffff;
+      --text-2: #a1a1a6;
+      --text-3: #6e6e73;
+      --blue: #3aa0ff;
+      --blue-deep: #1730c9;
+      --red: #ff3b3b;
+      --red-deep: #8e1010;
+      --accent: #0072bb;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+
+    /* Atmosphere: the app's blue/red glow */
+    .glow {
+      position: fixed;
+      width: 620px;
+      height: 620px;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow.blue { background: var(--blue-deep); top: -180px; right: -200px; }
+    .glow.red { background: var(--red-deep); bottom: -220px; left: -220px; }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+    }
+    .wordmark {
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+    }
+    .wordmark .s { color: var(--blue); text-shadow: 0 0 12px rgba(58,160,255,0.6); }
+    .wordmark .t { color: var(--red); text-shadow: 0 0 12px rgba(255,59,59,0.6); }
+    nav a {
+      color: var(--text-2);
+      text-decoration: none;
+      font-size: 15px;
+      margin-left: 22px;
+    }
+    nav a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 72px 0 56px;
+    }
+    .overline {
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin: 0 0 14px;
+    }
+    h1 {
+      font-size: clamp(40px, 8vw, 76px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      margin: 0 0 20px;
+      font-weight: 800;
+    }
+    h1 .red { color: var(--red); text-shadow: 0 0 28px rgba(255,59,59,0.45); }
+    .lede {
+      font-size: clamp(17px, 2.4vw, 20px);
+      color: var(--text-2);
+      max-width: 620px;
+      margin: 0 auto 34px;
+    }
+    .stores {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .store-btn {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-width: 190px;
+      padding: 12px 22px;
+      border-radius: 14px;
+      text-decoration: none;
+      background: var(--accent);
+      box-shadow: 0 10px 28px rgba(0,114,187,0.45), inset 0 0 0 1px rgba(122,190,255,0.25);
+      transition: transform 0.15s ease;
+    }
+    .store-btn:hover { transform: translateY(-2px); }
+    .store-btn.secondary {
+      background: #1c1c1e;
+      box-shadow: inset 0 0 0 1px #2c2c2e;
+    }
+    .store-btn small { font-size: 12px; color: rgba(255,255,255,0.75); }
+    .store-btn span { font-size: 18px; font-weight: 700; }
+    .free-note { margin-top: 16px; font-size: 14px; color: var(--text-3); }
+
+    /* Sections */
+    section { padding: 56px 0; }
+    h2 {
+      font-size: clamp(28px, 4.5vw, 40px);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin: 0 0 12px;
+      text-align: center;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--text-2);
+      max-width: 560px;
+      margin: 0 auto 36px;
+    }
+
+    .steps, .features {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    @media (min-width: 640px) {
+      .features { grid-template-columns: repeat(2, 1fr); }
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px;
+    }
+    .num {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 15px;
+      margin-bottom: 14px;
+      background: rgba(58,160,255,0.14);
+      color: var(--blue);
+    }
+    .card h3 { margin: 0 0 6px; font-size: 19px; }
+    .card p { margin: 0; color: var(--text-2); font-size: 15px; }
+
+    /* Philosophy */
+    .philosophy {
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 44px 24px;
+    }
+    .nos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .nos li {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255,59,59,0.12);
+      color: #ff8a8a;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #1c1c1e;
+      margin-top: 32px;
+      padding: 32px 0 48px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 28px;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-3);
+      font-size: 14px;
+    }
+    footer nav a { margin-left: 0; margin-right: 22px; color: var(--text-2); }
+    footer nav a:last-child { margin-right: 0; }
+
+    @media (max-width: 560px) {
+      header nav a:not(.keep) { display: none; }
+      .store-btn { min-width: 0; width: 100%; max-width: 320px; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
   </style>
 </head>
 <body>
-  <div>
-    <h1>Screen Tariff</h1>
-    <p>Sanction Your Distractions. Coming soon to the App Store and Google Play.</p>
+  <div class="glow blue" aria-hidden="true"></div>
+  <div class="glow red" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <header>
+      <a class="wordmark" href="/"><span class="s">Screen</span> <span class="t">Tariff</span></a>
+      <nav>
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a class="keep" href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="overline">The app blocker with a price of entry</p>
+        <h1>Sanction Your<br><span class="red">Distractions</span></h1>
+        <p class="lede">Screen Tariff puts a short ad break between you and your most distracting apps. Not a wall, just enough friction to make you think twice.</p>
+        <div class="stores">
+          <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.bigcrumbs.screentariff">
+            <small>Get it on</small><span>Google Play</span>
+          </a>
+          <!-- TODO: replace href with the App Store link once live -->
+          <a class="store-btn secondary" href="#">
+            <small>Download on the</small><span>App Store</span>
+          </a>
+        </div>
+        <p class="free-note">Free. No signup. Setup takes under 30 seconds.</p>
+      </section>
+
+      <section id="how">
+        <h2>How it works</h2>
+        <p class="section-sub">Create a rule, called a sanction, for each app you want to manage.</p>
+        <div class="steps">
+          <div class="card">
+            <div class="num">1</div>
+            <h3>Sanction an app</h3>
+            <p>Pick a distracting app and choose a buffer of 15, 30 or 60 seconds.</p>
+          </div>
+          <div class="card">
+            <div class="num">2</div>
+            <h3>Wait out the buffer</h3>
+            <p>Opening it starts an ad break the length of your buffer: a moment between impulse and action.</p>
+          </div>
+          <div class="card">
+            <div class="num">3</div>
+            <h3>Unlock on your terms</h3>
+            <p>Unlock it for 1 to 60 minutes. When time is up, it relocks automatically.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="features">
+        <h2>Built around you</h2>
+        <p class="section-sub">Every sanction is customizable to your habits and your goals.</p>
+        <div class="features">
+          <div class="card">
+            <h3>Insights</h3>
+            <p>Weekly summaries of your sessions, time unlocked, and the ad breaks you walked away from.</p>
+          </div>
+          <div class="card">
+            <h3>Relock warning</h3>
+            <p>Get a heads-up before a session ends, at a time you choose.</p>
+          </div>
+          <div class="card">
+            <h3>Express Pass</h3>
+            <p>In a hurry? Skip the ad break. Up to two passes, each recharging 24 hours after use.</p>
+          </div>
+          <div class="card">
+            <h3>Dynamic Sanctioning</h3>
+            <p>Loosen or tighten a sanction by day of the week, or snooze it for the day.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="philosophy">
+          <h2>No noise. No gimmicks.</h2>
+          <p class="section-sub" style="margin-bottom:0">A clean, focused tool that does exactly what it needs to do, and nothing more. Your data stays on your device.</p>
+          <ul class="nos">
+            <li>No signup</li>
+            <li>No subscription</li>
+            <li>No paywalls</li>
+            <li>No streaks</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; 2026 Big Crumbs LLC</span>
+      <nav>
+        <a href="/terms/">Terms of Service</a>
+        <a href="https://bigcrumbs.github.io/privacy-policy/">Privacy Policy</a>
+        <a href="mailto:thebigcrumbs26@gmail.com">Contact</a>
+      </nav>
+    </footer>
   </div>
 </body>
 </html>
