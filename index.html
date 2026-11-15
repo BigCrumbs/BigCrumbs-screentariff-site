@@ -732,7 +732,10 @@
   const silk = document.createElement('canvas'), sc = silk.getContext('2d');   // fine filaments, lightly softened
   const S_SCALE = 0.4, SPEED = 0.6;                           // SPEED < 1 slows every motion
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let paused = reduce, t = 0, last = performance.now(), W = 0, H = 0;
+  // The ribbons run on the real clock, not on time since the page loaded, so a refresh (or a
+  // later visit) picks the motion up exactly where it would be instead of restarting it.
+  const EPOCH = Date.UTC(2026, 0, 1), clock = () => (Date.now() - EPOCH) / 1000;
+  let paused = reduce, t = clock(), last = performance.now(), W = 0, H = 0;
 
   const RED = [178, 16, 32], BLUE = [28, 46, 200];
   // Each ribbon is a solid band along a looping 2D curve. Its width swells and pinches as it twists, and the side
@@ -817,7 +820,7 @@
 
   function frame(now) {
     const dt = Math.min(0.05, (now - last) / 1000); last = now;
-    if (!paused && !document.hidden) { t += dt; draw(); }
+    if (!paused && !document.hidden) { t = clock(); draw(); }
     requestAnimationFrame(frame);
   }
 
