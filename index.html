@@ -42,9 +42,6 @@
 
     /* Animated ribbon wallpaper: one fixed canvas behind everything. */
     #wall { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; display: block; }
-    .tune { position: fixed; z-index: 2; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
-    .tune button { font: 500 12px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text-2); background: rgba(20,20,26,0.7); border: 1px solid var(--border); border-radius: 999px; padding: 7px 13px; cursor: pointer; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
-    .tune button:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
 
     .wrap {
       position: relative;
@@ -137,7 +134,7 @@
        1.45s  wave 1: the slogan fades in (0.9s)
        1.76s  a light sweep glints across the slogan, left to right (0.6s). It starts as the
               slogan reaches 50% opacity (the ease-out fade hits 0.5 at ~34% of its 0.9s).
-       2.86s  wave 2 (0.5s after the sweep ends): header, description, store badges and motion button fade in (0.9s) */
+       3.11s  wave 2 (0.75s after the sweep ends): header, description and store badges fade in (0.9s) */
     .hero-slogan { position: relative; animation: slogan-in 0.9s ease-out 1.45s both; }
     /* Light sweep: a glowing copy of the slogan is revealed through a narrow, slanted window
        that slides across from left to right, so a streak of light glints along the lettering. */
@@ -162,9 +159,9 @@
       92%  { opacity: 1; }
       100% { -webkit-mask-position: 18% 0; mask-position: 18% 0; opacity: 0; }
     }
-    header, .intro, .stores, .tune { animation: slogan-in 0.9s ease-out 2.86s both; }
+    header, .intro, .stores { animation: slogan-in 0.9s ease-out 3.11s both; }
     @keyframes slogan-in { from { opacity: 0; } to { opacity: 1; } }
-    @media (prefers-reduced-motion: reduce) { .hero-logo, header, .hero-slogan, .hero-slogan::after, .intro, .stores, .tune { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { .hero-logo, header, .hero-slogan, .hero-slogan::after, .intro, .stores { animation: none; } }
     /* The slogan image has empty space below the lettering; show only the lettering. */
     .hero-slogan {
       width: min(440px, 76vw);
@@ -714,9 +711,6 @@
     </footer>
   </div>
 
-  <div class="tune">
-    <button id="pause" type="button" aria-pressed="false">Pause motion</button>
-  </div>
 
 <script>
 (() => {
@@ -814,10 +808,6 @@
     requestAnimationFrame(frame);
   }
 
-  const btn = document.getElementById('pause');
-  const label = () => { btn.textContent = paused ? 'Play motion' : 'Pause motion'; btn.setAttribute('aria-pressed', String(paused)); };
-  btn.addEventListener('click', () => { paused = !paused; label(); });
-  label();
 
   document.addEventListener('visibilitychange', () => { if (!document.hidden) last = performance.now(); });
   addEventListener('resize', size);
