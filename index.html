@@ -7,6 +7,11 @@
   <meta name="color-scheme" content="dark">
   <title>Screen Tariff — Sanction Your Distractions</title>
   <meta name="description" content="Screen Tariff is a free app blocker that puts a short ad break between you and your most distracting apps. Every feature is free: no subscription, no paywalls, no signup.">
+  <script>
+    // Play the intro only on the first visit in this browser session.
+    try { if (!sessionStorage.getItem('st-intro-seen')) { document.documentElement.classList.add('play-intro'); sessionStorage.setItem('st-intro-seen', '1'); } }
+    catch (e) { document.documentElement.classList.add('play-intro'); }
+  </script>
   <link rel="icon" type="image/png" href="Screen%20Tariff%20Block%20Icon%202.png">
   <link rel="apple-touch-icon" href="Screen%20Tariff%20Block%20Icon%202.png">
   <style>
@@ -99,11 +104,12 @@
     }
     .hero-logo {
       /* never wider than the description below it (640px max, or the screen minus its side padding) */
-      width: min(620px, calc(100vw - 48px));
+      width: min(590px, calc(100vw - 48px), 74vh);
       margin: 0 auto;
     }
     /* Intro: the logo flickers on like a neon tube warming up, then holds steady. */
-    .hero-logo { animation: neon-on 1.3s linear 0.15s both; }
+    /* The intro only runs while <html> has the "play-intro" class (first visit in a session, or a tap on the corner logo). */
+    html.play-intro .hero-logo { animation: neon-on 1.3s linear 0.15s both; }
     @keyframes neon-on {
       0%   { opacity: 0.06; filter: brightness(0.4); }
       5%   { opacity: 0.06; filter: brightness(0.4); }
@@ -136,7 +142,8 @@
        1.76s  a light sweep glints across the slogan, left to right (0.6s). It starts as the
               slogan reaches 50% opacity (the ease-out fade hits 0.5 at ~34% of its 0.9s).
        3.11s  wave 2 (0.75s after the sweep ends): header, description and store badges fade in (0.9s) */
-    .hero-slogan { position: relative; animation: slogan-in 0.9s ease-out 1.45s both; }
+    .hero-slogan { position: relative; }
+    html.play-intro .hero-slogan { animation: slogan-in 0.9s ease-out 1.45s both; }
     /* Light sweep: a glowing copy of the slogan is revealed through a narrow, slanted window
        that slides across from left to right, so a streak of light glints along the lettering. */
     .hero-slogan::after {
@@ -152,7 +159,6 @@
       -webkit-mask-position: 82% 0; mask-position: 82% 0;
       mix-blend-mode: screen;          /* light only adds; it never darkens what's behind */
       opacity: 0;
-      animation: slogan-sweep 0.6s cubic-bezier(.45,.05,.55,.95) 1.76s both;
     }
     @keyframes slogan-sweep {
       0%   { -webkit-mask-position: 82% 0; mask-position: 82% 0; opacity: 0; }
@@ -160,12 +166,13 @@
       92%  { opacity: 1; }
       100% { -webkit-mask-position: 18% 0; mask-position: 18% 0; opacity: 0; }
     }
-    header, .intro, .stores { animation: slogan-in 0.9s ease-out 3.11s both; }
+    html.play-intro .hero-slogan::after { animation: slogan-sweep 0.6s cubic-bezier(.45,.05,.55,.95) 1.76s both; }
+    html.play-intro header, html.play-intro .intro, html.play-intro .stores { animation: slogan-in 0.9s ease-out 3.11s both; }
     @keyframes slogan-in { from { opacity: 0; } to { opacity: 1; } }
-    @media (prefers-reduced-motion: reduce) { .hero-logo, header, .hero-slogan, .hero-slogan::after, .intro, .stores { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { html.play-intro .hero-logo, html.play-intro header, html.play-intro .hero-slogan, html.play-intro .hero-slogan::after, html.play-intro .intro, html.play-intro .stores { animation: none; } }
     /* The slogan image has empty space below the lettering; show only the lettering. */
     .hero-slogan {
-      width: min(490px, 82vw);
+      width: min(465px, 82vw, 58vh);
       aspect-ratio: 1894 / 560;
       margin: -18px auto 0;
       overflow: hidden;
@@ -427,6 +434,11 @@
     .final .section-sub { color: var(--text-2); text-shadow: none; }
     .why h2, .final h2 { text-shadow: none; }
 
+    /* Shorter laptop screens: tighten the hero spacing so the store badges stay on the first screen. */
+    @media (min-width: 761px) and (max-height: 860px) {
+      .hero { padding-top: 24px; }
+      .intro { margin: 22px auto 26px; }
+    }
     @media (max-width: 760px) {
       section { padding: 56px 0; }
       .flow { flex-direction: column; align-items: center; gap: 4px; }
@@ -833,6 +845,20 @@
           e.preventDefault();
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
+      });
+    })();
+
+    // Tapping the corner logo replays the intro from the top of the page.
+    (function () {
+      var brand = document.querySelector('header .brand');
+      if (!brand) return;
+      brand.addEventListener('click', function (e) {
+        e.preventDefault();
+        var root = document.documentElement;
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        root.classList.remove('play-intro');
+        void root.offsetWidth;            // restart the animations
+        root.classList.add('play-intro');
       });
     })();
 
