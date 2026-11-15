@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "slots": {
     "interstitial": [
       { "type": "admob", "weight": 90, "platforms": ["android"] },
@@ -14,8 +14,9 @@
       { "id": "screenTariffGraphic", "type": "image", "file": "screen_tariff_graphic.png", "weight": 10, "platforms": ["ios"] }
     ],
     "interstitial15s": [
-      { "id": "derickFlier", "weight": 50, "platforms": ["android"] },
-      { "id": "fastPatch", "weight": 50, "platforms": ["android"] },
+      { "id": "remoteTest", "type": "image", "file": "remote_test.webp", "link": "https://screentariff.com", "weight": 100, "platforms": ["android"] },
+      { "id": "derickFlier", "weight": 0, "platforms": ["android"] },
+      { "id": "fastPatch", "weight": 0, "platforms": ["android"] },
 
       { "id": "derickFlier", "weight": 44, "platforms": ["ios"] },
       { "id": "fastPatch", "weight": 44, "platforms": ["ios"] },
