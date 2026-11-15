@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Screen Tariff Ribbon Wallpaper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: one fixed canvas of blurred red/blue strings behind a long, quiet scroll of placeholder sections */
+:root {
+  --night: #050508;        /* page ground, the app's near-black */
+  --crimson: #b3121c;      /* the red glow behind the app's list */
+  --royal: #1a2cc8;        /* the blue glow at the top of the app */
+  --ink: #f2f2f6;
+  --mute: #9a9aac;
+  --panel: rgba(22, 22, 28, 0.55);
+  --line: rgba(255, 255, 255, 0.08);
+  --display: "Archivo Black", "Arial Black", Impact, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+html { background: var(--night); }
+body { background: var(--night); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; }
+#wall { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; display: block; }
+main { position: relative; z-index: 1; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1040px; margin: 0 auto; }
+section { padding-block: 22vh; display: grid; gap: 18px; }
+section:first-child { padding-block: 18vh 26vh; }
+.eyebrow { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); font-weight: 600; }
+h1, h2 { font-family: var(--display); font-weight: 400; line-height: 1.02; margin: 0; text-wrap: balance; letter-spacing: 0.01em; }
+h1 { font-size: clamp(44px, 9vw, 112px); }
+h2 { font-size: clamp(32px, 5.4vw, 64px); }
+h1 em, h2 em { font-style: normal; color: #ff2a2a; }
+p { margin: 0; max-width: 60ch; color: #c8c8d4; }
+.slot { border: 1px dashed var(--line); border-radius: 18px; background: var(--panel); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); min-height: 220px; display: grid; place-items: center; color: var(--mute); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+.right { justify-items: end; text-align: right; }
+.right p { justify-self: end; }
+footer { position: relative; z-index: 1; padding-block: 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); border-top: 1px solid var(--line); color: var(--mute); font-size: 13px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+.tune { position: fixed; z-index: 2; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); display: flex; gap: 8px; }
+.tune button { font: 500 12px var(--body); color: var(--ink); background: rgba(20, 20, 26, 0.7); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor: pointer; backdrop-filter: blur(8px); }
+.tune button:hover { border-color: rgba(255, 255, 255, 0.25); }
+.tune button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+</style>
+
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}</style>
+</head>
+<body>
+<canvas id="wall" aria-hidden="true"></canvas>
+
+<main>
+  <div class="wrap">
+    <section>
+      <span class="eyebrow">Screen Tariff</span>
+      <h1>Put a price on <em>distraction</em></h1>
+      <p>Placeholder hero copy. The red and blue strings behind this text are the wallpaper: they drift and wind around each other as the page scrolls, and stay soft enough to sit under any content.</p>
+    </section>
+
+    <section>
+      <span class="eyebrow">Section 01 · placeholder</span>
+      <h2>Ad breaks before distracting apps</h2>
+      <p>Replace with your copy. Each section is just a heading, a paragraph and a slot for an image or phone mockup.</p>
+      <div class="slot">Image or mockup slot</div>
+    </section>
+
+    <section class="right">
+      <span class="eyebrow">Section 02 · placeholder</span>
+      <h2>Fully custom setup</h2>
+      <p>Replace with your copy. Alternating alignment keeps the strings visible on the open side.</p>
+      <div class="slot" style="width:100%">Image or mockup slot</div>
+    </section>
+
+    <section>
+      <span class="eyebrow">Section 03 · placeholder</span>
+      <h2>Track weekly KPIs</h2>
+      <p>Replace with your copy.</p>
+      <div class="slot">Image or mockup slot</div>
+    </section>
+
+    <section class="right">
+      <span class="eyebrow">Section 04 · placeholder</span>
+      <h2>Sanction your <em>distractions</em></h2>
+      <p>Replace with your copy, then add store badges here.</p>
+    </section>
+  </div>
+</main>
+
+<footer><div class="wrap"><span>Screen Tariff</span><span>Wallpaper template · footer placeholder</span></div></footer>
+
+<div class="tune">
+  <button id="pause" type="button" aria-pressed="false">Pause motion</button>
+</div>
+
+<script>
+(() => {
+  const cv = document.getElementById('wall');
+  const ctx = cv.getContext('2d');
+  const glow = document.createElement('canvas'), gc = glow.getContext('2d');   // wide, very soft colour field
+  const silk = document.createElement('canvas'), sc = silk.getContext('2d');   // fine filaments, lightly softened
+  const G_SCALE = 0.12, S_SCALE = 0.4, SPEED = 0.6;                           // SPEED < 1 slows every motion
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let paused = reduce, t = 0, last = performance.now(), W = 0, H = 0;
+
+  const RED = [178, 16, 32], BLUE = [28, 46, 200];
+  // Each ribbon is a solid band along a looping 2D curve. Its width swells and pinches as it twists, and the side
+  // facing away is drawn darker, so it reads as a satin ribbon turning over. Red and blue pairs share a path family
+  // with opposite phase, so they curl around each other.
+  // One red and one blue line, both drifting up. Their own seeds keep them out of step, so they cross and part irregularly.
+  const ribbons = [
+    { col: RED,  x0: 0.30, seed: 3.7,  sp: 0.032, hw: 0.05, a: 0.95, curl: 0.30, k: 2.7 },
+    { col: BLUE, x0: 0.72, seed: 11.2, sp: 0.027, hw: 0.05, a: 0.95, curl: 0.28, k: 3.1 },
+  ];
+
+  function size() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    W = innerWidth; H = innerHeight;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    glow.width = Math.max(2, Math.round(W * G_SCALE)); glow.height = Math.max(2, Math.round(H * G_SCALE));
+    silk.width = Math.max(2, Math.round(W * S_SCALE)); silk.height = Math.max(2, Math.round(H * S_SCALE));
+    draw();
+  }
+
+  // centre of ribbon r at parameter u (screens down the page) and time tt, in 0..1 units of width / height
+  // smooth, non-repeating 2D value noise, so the curves never settle into a regular wave
+  const hash = (i, j) => { const h = Math.sin(i * 127.1 + j * 311.7) * 43758.5453; return h - Math.floor(h); };
+  const fade = q => q * q * (3 - 2 * q);
+  function noise(x, y) {
+    const i = Math.floor(x), j = Math.floor(y), fx = fade(x - i), fy = fade(y - j);
+    const a = hash(i, j), b = hash(i + 1, j), c = hash(i, j + 1), d = hash(i + 1, j + 1);
+    return (a + (b - a) * fx + (c - a) * fy + (a - b - c + d) * fx * fy) * 2 - 1;
+  }
+  const fbm = (x, y) => noise(x, y) * 0.6 + noise(x * 2.03 + 17.1, y * 1.7 - 3.3) * 0.28 + noise(x * 4.1 - 9.7, y * 2.9 + 5.5) * 0.12;
+
+  function centre(r, u, tt) {
+    // upward travel; the speed wanders but never reverses
+    const travel = tt * r.sp * 1.6 + 0.12 * Math.sin(tt * 0.05 + r.seed) + 0.06 * Math.sin(tt * 0.031 + r.seed * 2.3);
+    const off = scrollY / (H || 1) * 0.6;
+    const uu = u + travel, sd = r.seed;
+    // a slow, wide wander plus a rolling curl whose size and pace change along the line: gentle bends in one place, near-loops in another
+    const wander = 0.30 * fbm(uu * 0.7 + sd, tt * 0.045 + sd) + 0.18 * fbm(uu * 2.4 - sd, tt * 0.06);   // squiggle: a slow drift plus a quicker wobble
+    const theta = uu * r.k * Math.PI * (0.8 + 0.4 * fbm(tt * 0.01, sd)) + 4.2 * fbm(uu * 0.6 + sd * 2, tt * 0.05 + sd);   // turning direction keeps changing
+    const R = r.curl * (0.3 + 0.7 * (0.5 + 0.5 * fbm(uu * 0.5 + sd * 3, tt * 0.04)));
+    // the whole band roams: its anchor drifts across the screen and it leans one way, then the other
+    const roam = 0.26 * fbm(tt * 0.022 + sd * 5, sd) + 0.08 * Math.sin(tt * 0.013 + sd);
+    const lean = 0.55 * fbm(tt * 0.017 + sd * 7, sd + 9) * (u - off - 0.5);
+    const x = r.x0 + roam + lean + wander + R * Math.cos(theta);
+    const y = u + R * 0.85 * Math.sin(theta);
+    return [x, y];
+  }
+
+  function paint(c, w, h, scroll, mode) {
+    c.globalCompositeOperation = 'source-over';
+    c.fillStyle = '#050508'; c.fillRect(0, 0, w, h);
+    const tt = t * SPEED, steps = 260, off = scroll * 0.6;
+    c.globalCompositeOperation = mode === 'glow' ? 'lighter' : 'source-over';   // solid ribbons pass over each other, no bright folds
+    for (const r of ribbons) {
+      const [R, G, B] = r.col;
+      const pts = [];
+      for (let i = 0; i <= steps; i++) {
+        const v = i / steps * 1.7 - 0.35;                                  // a little beyond the screen top and bottom
+        const [x, y] = centre(r, v + off, tt);
+        pts.push([x * w, (y - off) * h, v + off]);
+      }
+      if (mode === 'glow') {
+        c.lineCap = 'round'; c.lineJoin = 'round';
+        c.beginPath(); pts.forEach(([x, y], i) => i ? c.lineTo(x, y) : c.moveTo(x, y));
+        c.strokeStyle = `rgba(${R},${G},${B},${0.1 * r.a})`; c.lineWidth = r.hw * w * 4; c.stroke();
+        continue;
+      }
+      // solid line of constant width
+      c.lineCap = 'round'; c.lineJoin = 'round';
+      c.beginPath(); pts.forEach(([x, y], i) => i ? c.lineTo(x, y) : c.moveTo(x, y));
+      c.strokeStyle = `rgb(${Math.round(5 + (R - 5) * r.a)},${Math.round(5 + (G - 5) * r.a)},${Math.round(8 + (B - 8) * r.a)})`;
+      c.lineWidth = r.hw * w * 4.16; c.stroke();
+    }
+  }
+
+  function draw() {
+    const scroll = scrollY / H;                            // in screens; the wallpaper scrolls at 60% of the page
+    paint(gc, glow.width, glow.height, scroll, 'glow');
+    paint(sc, silk.width, silk.height, scroll, 'ribbon');
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+    const hasF = 'filter' in ctx;
+    if (hasF) ctx.filter = `blur(${Math.round(cv.width * 0.03)}px)`;
+    ctx.drawImage(glow, -cv.width * 0.06, -cv.height * 0.06, cv.width * 1.12, cv.height * 1.12);
+    if (hasF) ctx.filter = `blur(${Math.max(10, Math.round(cv.width * 0.072))}px)`;   // heavy blur: the lines read as moving gradients
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.drawImage(silk, 0, 0, cv.width, cv.height);
+    ctx.globalCompositeOperation = 'source-over';
+    if (hasF) ctx.filter = 'none';
+    const vg = ctx.createRadialGradient(cv.width / 2, cv.height / 2, Math.min(cv.width, cv.height) * 0.25, cv.width / 2, cv.height / 2, Math.max(cv.width, cv.height) * 0.75);
+    vg.addColorStop(0, 'rgba(5,5,8,0)'); vg.addColorStop(1, 'rgba(5,5,8,0.85)');
+    ctx.fillStyle = vg; ctx.fillRect(0, 0, cv.width, cv.height);
+  }
+
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    if (!paused) { t += dt; draw(); }
+    requestAnimationFrame(frame);
+  }
+
+  const btn = document.getElementById('pause');
+  const label = () => { btn.textContent = paused ? 'Play motion' : 'Pause motion'; btn.setAttribute('aria-pressed', String(paused)); };
+  btn.addEventListener('click', () => { paused = !paused; label(); });
+  label();
+
+  addEventListener('resize', size);
+  addEventListener('scroll', () => { if (paused) draw(); }, { passive: true });
+  size();
+  requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>
