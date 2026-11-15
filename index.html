@@ -104,6 +104,27 @@
       width: min(560px, 88vw);
       margin: 0 auto;
     }
+    /* Intro: the logo flickers on like a neon tube warming up, then holds steady. */
+    .hero-logo { animation: neon-on 2.2s linear 0.3s both; }
+    @keyframes neon-on {
+      0%   { opacity: 0;    filter: brightness(0.4); }
+      4%   { opacity: 0.9;  filter: brightness(1.3); }
+      6%   { opacity: 0.05; filter: brightness(0.4); }
+      14%  { opacity: 0.05; }
+      16%  { opacity: 0.8;  filter: brightness(1.2); }
+      18%  { opacity: 0.1;  filter: brightness(0.5); }
+      20%  { opacity: 0.6; }
+      22%  { opacity: 0.08; }
+      38%  { opacity: 0.08; filter: brightness(0.5); }
+      41%  { opacity: 1;    filter: brightness(1.35); }
+      44%  { opacity: 0.35; filter: brightness(0.8); }
+      47%  { opacity: 1;    filter: brightness(1.15); }
+      58%  { opacity: 1; }
+      60%  { opacity: 0.55; filter: brightness(0.85); }
+      62%  { opacity: 1;    filter: brightness(1.1); }
+      100% { opacity: 1;    filter: brightness(1); }
+    }
+    @media (prefers-reduced-motion: reduce) { .hero-logo { animation: none; } }
     /* The slogan image has empty space below the lettering; show only the lettering. */
     .hero-slogan {
       width: min(440px, 76vw);
