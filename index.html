@@ -234,7 +234,11 @@
       background: #2e9e57;
       box-shadow: 0 6px 18px rgba(76,208,125,0.45);
     }
-    .platform[hidden] { display: none; }
+    /* Both panels share one grid cell, so the section is always as tall as the
+       taller panel and switching platforms never shifts the page. */
+    .platforms { display: grid; }
+    .platforms > .platform { grid-area: 1 / 1; }
+    .platform.inactive { visibility: hidden; pointer-events: none; }
 
     /* Tutorial video slot (landscape, 16:9) */
     .video-slot {
@@ -488,6 +492,7 @@
           <button type="button" role="tab" id="tab-android" aria-controls="panel-android" aria-selected="false">Android</button>
         </div>
 
+        <div class="platforms">
         <!-- iOS -->
         <div class="platform" id="panel-ios" role="tabpanel" aria-labelledby="tab-ios">
           <div class="video-slot">
@@ -543,7 +548,7 @@
         </div>
 
         <!-- Android -->
-        <div class="platform" id="panel-android" role="tabpanel" aria-labelledby="tab-android" hidden>
+        <div class="platform inactive" id="panel-android" role="tabpanel" aria-labelledby="tab-android" aria-hidden="true" inert>
           <div class="video-slot">
             <!-- TODO: replace this placeholder with the Android tutorial video, e.g.
                  <video src="android-tutorial.mp4" controls playsinline poster="..."></video>  (16:9 landscape) -->
@@ -608,6 +613,7 @@
             </div>
           </div>
         </div>
+        </div>
 
       </section>
 
@@ -652,7 +658,9 @@
         for (var key in tabs) {
           var on = key === name;
           tabs[key].setAttribute('aria-selected', on ? 'true' : 'false');
-          panels[key].hidden = !on;
+          panels[key].classList.toggle('inactive', !on);
+          panels[key].setAttribute('aria-hidden', on ? 'false' : 'true');
+          panels[key].inert = !on;
         }
       }
       tabs.ios.addEventListener('click', function () { select('ios'); });
