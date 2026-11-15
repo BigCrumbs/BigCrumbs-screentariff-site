@@ -132,10 +132,11 @@
       67%  { opacity: 1;    filter: brightness(1.3); }
       100% { opacity: 1;    filter: brightness(1); }
     }
-    /* The slogan fades in once the logo has finished flickering on (0.15s delay + 1.3s flicker). */
-    .hero-slogan { animation: slogan-in 0.9s ease-out 1.45s both; }
+        /* Everything else on the opening screen (header, slogan, description, store badges,
+       motion button) fades in together once the logo has finished flickering on. */
+    header, .hero-slogan, .intro, .stores, .tune { animation: slogan-in 0.9s ease-out 1.45s both; }
     @keyframes slogan-in { from { opacity: 0; } to { opacity: 1; } }
-    @media (prefers-reduced-motion: reduce) { .hero-logo, .hero-slogan { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { .hero-logo, header, .hero-slogan, .intro, .stores, .tune { animation: none; } }
     /* The slogan image has empty space below the lettering; show only the lettering. */
     .hero-slogan {
       width: min(440px, 76vw);
