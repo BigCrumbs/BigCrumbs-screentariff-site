@@ -727,7 +727,7 @@
   }
 
   function draw() {
-    const scroll = scrollY / H;                            // in screens; the wallpaper scrolls at 60% of the page
+    const scroll = 0;                                      // fixed wallpaper: scrolling the page doesn't move the lines
     // Lines only: the soft outer glow layer is no longer drawn.
     paint(sc, silk.width, silk.height, scroll, 'ribbon');
     ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -755,7 +755,6 @@
 
   document.addEventListener('visibilitychange', () => { if (!document.hidden) last = performance.now(); });
   addEventListener('resize', size);
-  addEventListener('scroll', () => { if (paused) draw(); }, { passive: true });
   size();
   requestAnimationFrame(frame);
 })();
