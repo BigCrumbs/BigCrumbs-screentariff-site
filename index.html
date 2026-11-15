@@ -282,6 +282,9 @@
     }
     .feature .tag { box-shadow: 0 0 14px rgba(58,160,255,0.35); }
     .feature .tag.green { color: #4cd07d; background: rgba(76,208,125,0.14); box-shadow: 0 0 14px rgba(76,208,125,0.45); }
+    .feature .tag.gold { color: #f5c542; background: rgba(245,197,66,0.14); box-shadow: 0 0 14px rgba(245,197,66,0.45); }
+    .feature .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .feature .tags .tag { margin-bottom: 0; }
     .feature h3 {
       font-size: clamp(24px, 3.4vw, 32px);
       letter-spacing: -0.015em;
@@ -302,6 +305,9 @@
       padding: 56px 24px;
     }
     .final .section-sub { margin-bottom: 0; }
+    /* The byline follows the philosophy panel directly (no empty gap where the old panel sat). */
+    section.final-wrap { padding-bottom: 0; }
+    .byline { padding-top: 56px !important; }
     .nos {
       display: flex;
       flex-wrap: wrap;
@@ -372,6 +378,7 @@
       .feature.flip .shot { order: 0; }
       .feature .shot img { width: 230px; margin: 0 auto; }
       .feature ul { text-align: left; display: inline-block; }
+      .feature .tags { justify-content: center; }
     }
     @media (max-width: 560px) {
       /* Portrait phones: no corner logo; all four links fit, centered. */
@@ -573,8 +580,8 @@
             <div class="shot"><img src="Pixel10%20Timer%20transparent.webp" alt="Sanction setup in Timer mode on Android" width="1342" height="2798" loading="lazy"></div>
             <div>
               <span class="tag green">Timer mode</span>
-              <h3>Rules that fit each app</h3>
-              <p>Every sanction is customizable, and setup takes under 30 seconds.</p>
+              <h3>On the Clock</h3>
+              <p>Decide up front how long you get, and when time's up, the app locks itself again. No willpower required.</p>
               <ul>
                 <li>Unlock for 1 to 60 minutes; the app relocks automatically</li>
                 <li>Choose a 15, 30 or 60 second ad break</li>
@@ -586,8 +593,8 @@
           <div class="feature">
             <div class="shot"><img src="Pixel10%20Exit%20Out%20transparent.webp" alt="Sanction setup in Exit-Out mode on Android" width="1342" height="2798" loading="lazy"></div>
             <div>
-              <span class="tag green">Exit-Out mode</span>
-              <h3>Android exclusive</h3>
+              <div class="tags"><span class="tag green">Exit-Out mode</span><span class="tag gold">Android exclusive</span></div>
+              <h3>Unblock à la Carte</h3>
               <p>No timer to watch. Access stays open while you use the app, and it locks again as soon as you leave it.</p>
               <ul>
                 <li>Perfect for quick check-ins</li>
@@ -616,7 +623,7 @@
       </section>
 
       <!-- ── Final thoughts ── -->
-      <section>
+      <section class="final-wrap">
         <div class="final">
           <p class="eyebrow">Our philosophy</p>
           <h2>No noise. No gimmicks.</h2>
@@ -629,7 +636,6 @@
           </ul>
         </div>
       </section>
-
 
       <!-- ── An app by ── -->
       <div class="byline">
