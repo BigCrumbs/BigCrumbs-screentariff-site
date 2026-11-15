@@ -135,38 +135,38 @@
         /* Intro timeline:
        0.15s  logo flickers on (1.3s)
        1.45s  wave 1: the slogan fades in (0.9s)
-       2.35s  a band of light sweeps across the slogan, left to right (0.9s)
-       3.25s  wave 2: header, description, store badges and motion button fade in (0.9s) */
+       2.35s  a bevel glint sweeps across the slogan, left to right (1s)
+       3.35s  wave 2: header, description, store badges and motion button fade in (0.9s) */
     .hero-slogan { position: relative; animation: slogan-in 0.9s ease-out 1.45s both; }
+    /* Bevel glint: a narrow, slanted highlight with a thin shadow on each side glides across
+       the lettering, like light catching the edge of polished metal. It only shows on the
+       lettering (the slogan image itself is the mask). */
+    /* Light sweep: a glowing copy of the slogan is revealed through a narrow, slanted window
+       that slides across from left to right, so a streak of light glints along the lettering. */
     .hero-slogan::after {
       content: "";
       position: absolute; inset: 0;
       pointer-events: none;
-      /* the light only shows on the lettering: the slogan image itself is the mask */
-      -webkit-mask: url("Screen%20Tariff%20Slogan%20T2.webp") top center / 100% auto no-repeat;
-              mask: url("Screen%20Tariff%20Slogan%20T2.webp") top center / 100% auto no-repeat;
-      background: linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 36%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 64%, rgba(255,255,255,0) 100%) no-repeat;
-      background-size: 300% 100%;
-      background-position: 82% 0;
-      filter: drop-shadow(0 0 6px rgba(255,255,255,0.8));
+      background: url("Screen%20Tariff%20Slogan%20T2.webp") top center / 100% auto no-repeat;
+      filter: brightness(1.8) drop-shadow(0 0 10px rgba(255,255,255,0.95));
+      -webkit-mask-image: linear-gradient(105deg, transparent 44%, #000 50%, transparent 56%);
+              mask-image: linear-gradient(105deg, transparent 44%, #000 50%, transparent 56%);
+      -webkit-mask-size: 300% 100%; mask-size: 300% 100%;
+      -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+      -webkit-mask-position: 82% 0; mask-position: 82% 0;
+      mix-blend-mode: screen;          /* light only adds; it never darkens what's behind */
       opacity: 0;
-      animation: slogan-shine 0.9s linear 2.35s both;
+      animation: slogan-sweep 1s cubic-bezier(.45,.05,.55,.95) 2.35s both;
     }
-    /* The slogan sits slightly dimmed until the light passes over it, then is left fully lit,
-       so the sweep reads clearly on the white lettering. */
-    .hero-slogan img { animation: slogan-light 0.9s ease-in-out 2.35s both; }
-    @keyframes slogan-light {
-      0%   { filter: brightness(0.45); }
-      20%  { filter: brightness(0.45); }
-      100% { filter: brightness(1); }
+    @keyframes slogan-sweep {
+      0%   { -webkit-mask-position: 82% 0; mask-position: 82% 0; opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { -webkit-mask-position: 18% 0; mask-position: 18% 0; opacity: 0; }
     }
-    @keyframes slogan-shine {
-      0%   { background-position: 82% 0; opacity: 1; }
-      100% { background-position: 18% 0; opacity: 1; }
-    }
-    header, .intro, .stores, .tune { animation: slogan-in 0.9s ease-out 3.25s both; }
+    header, .intro, .stores, .tune { animation: slogan-in 0.9s ease-out 3.35s both; }
     @keyframes slogan-in { from { opacity: 0; } to { opacity: 1; } }
-    @media (prefers-reduced-motion: reduce) { .hero-logo, header, .hero-slogan, .hero-slogan img, .hero-slogan::after, .intro, .stores, .tune { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { .hero-logo, header, .hero-slogan, .hero-slogan::after, .intro, .stores, .tune { animation: none; } }
     /* The slogan image has empty space below the lettering; show only the lettering. */
     .hero-slogan {
       width: min(440px, 76vw);
