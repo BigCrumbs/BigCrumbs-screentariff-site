@@ -165,6 +165,7 @@
     .why h2 { text-align: left; }
     .why p { color: var(--text-2); font-size: 17px; margin: 0 0 16px; }
     .why p:last-child { margin-bottom: 0; }
+    .why h3 { font-size: 21px; margin: 30px 0 10px; color: var(--text); }
 
     /* ── Platform toggle ── */
     .toggle {
@@ -193,14 +194,19 @@
       color: #fff;
       box-shadow: 0 6px 18px rgba(0,114,187,0.45);
     }
+    .toggle button#tab-android[aria-selected="true"] {
+      background: #2e9e57;
+      box-shadow: 0 6px 18px rgba(76,208,125,0.45);
+    }
     .platform[hidden] { display: none; }
 
-    /* Tutorial video slot (portrait screen recording) */
+    /* Tutorial video slot (landscape, 16:9) */
     .video-slot {
-      width: min(330px, 80vw);
-      aspect-ratio: 9 / 16;
+      width: 100%;
+      max-width: 860px;
+      aspect-ratio: 16 / 9;
       margin: 0 auto 72px;
-      border-radius: 28px;
+      border-radius: 18px;
       background: var(--card);
       border: 1px solid var(--border);
       display: grid;
@@ -246,7 +252,8 @@
       padding: 4px 12px;
       margin-bottom: 12px;
     }
-    .feature .tag.green { color: #4cd07d; background: rgba(76,208,125,0.12); }
+    .feature .tag { box-shadow: 0 0 14px rgba(58,160,255,0.35); }
+    .feature .tag.green { color: #4cd07d; background: rgba(76,208,125,0.14); box-shadow: 0 0 14px rgba(76,208,125,0.45); }
     .feature h3 {
       font-size: clamp(24px, 3.4vw, 32px);
       letter-spacing: -0.015em;
@@ -446,42 +453,23 @@
         <div class="why">
           <p class="eyebrow" style="text-align:left">The story</p>
           <h2>Why Screen Tariff?</h2>
-          <!-- TODO: replace with the text of the app's "Why Screen Tariff?" page -->
-          <p>Why Screen Tariff?
-
-Screen Tariff was conceptualized, designed, and built with the goal of rethinking how users interact with app-blocking tools. By introducing an ad break before allowing access to a distracting app, Screen Tariff adds an entirely new layer of friction to the user experience. Take it from me: I'm a frequent user of Screen Tariff myself.
-
-Every time I impulsively open my phone to access an app like YouTube or Instagram, I'm now forced to ask myself: "Do I really want to sit through an ad break just to aimlessly scroll for an extended period of time?" More often than not, the answer is no. I don't even need to open Screen Tariff to reach that conclusion. This additional layer of friction has been a key factor in reducing my screen time on my most distracting apps by as much as 80%.
-
-A Different Philosophy
-
-Most app blockers take on the role of a counselor, encouraging users to stay away from blocked apps through words of encouragement, breathing exercises, haikus, and similar interventions. Screen Tariff takes a different approach. You won't get any pushback from us; we're not here to tell you to touch grass.
-
-We simply provide a way for you to decide whether accessing an app is worth the cost of sitting through an ad break. The length of that ad break and the amount of time you allow yourself to spend in the app are entirely up to you.
-
-At its core, Screen Tariff is designed to feel like a sandbox: a space where you can experiment with different settings and find the parameters that best suit your needs for each app you choose to sanction.
-
-Brevity Is a Top Priority
-
-Screen Tariff's business model is designed to align more closely with users' interests than those of many competing app blockers, which tend to rely heavily on subscription revenue.
-
-Leading app blockers often lock advanced features behind subscription plans, with some costing more than $100 per year. This creates an incentive to convert as many free users as possible into paying subscribers. To accomplish this, a frequent strategy is to bombard users with persistent pop-ups, promotional offers, and reminders about the features they're missing out on. For people who simply want an effective way to reduce their screen time, these interruptions can become a distraction in their own right.
-
-Because Screen Tariff's business model centers on ad revenue, we're incentivized to make the app as transparent, efficient, and fair to users as possible. We also plan to introduce more advanced features as the app grows, making them available to all users at no additional cost.
-
-Personal Use Cases
-
-Screen Tariff was built with the goal of combating the growing addictiveness of social media. I was born in 2003, making me about as Gen Z as one can get, and I've witnessed firsthand how profoundly social media addiction can affect everyday life, particularly with the rise of the endless scroll format.
-
-I've spent countless hours consuming content that I couldn't even remember five minutes later. Whenever I finally managed to pull myself away from a scrolling binge, I'd often feel sluggish, dazed, and regretful.
-
-Integrating Screen Tariff into my daily routine has effectively eliminated much of the mindless scrolling that used to consume my time. I still allow myself to access this content occasionally, but the limits I set for each session serve as a useful reminder of how much time I'm spending. As a result, I feel much more in control of my attention.
-
-Another immediate improvement has been in my morning routine. Before using Screen Tariff, my first instinct upon waking up was to unlock my phone and start scrolling through X. Now, knowing that an ad break stands between me and that first scroll, I can happily say that I never open my phone before leaving my bedroom. As a result, my days begin with considerably more clarity and energy.
-
-Everything discussed here only scratches the surface of what Screen Tariff can offer. This app has genuinely changed my life, and I hope you'll find similar value in it.
-
-I'm excited to hear your feedback and learn about all the different ways people are using Screen Tariff. Thank you for taking the time to read this, and I sincerely hope you enjoy everything the app has to offer!</p>
+          <p>Screen Tariff was conceptualized, designed, and built with the goal of rethinking how users interact with app-blocking tools. By introducing an ad break before allowing access to a distracting app, Screen Tariff adds an entirely new layer of friction to the user experience. Take it from me: I'm a frequent user of Screen Tariff myself.</p>
+          <p>Every time I impulsively open my phone to access an app like YouTube or Instagram, I'm now forced to ask myself: "Do I really want to sit through an ad break just to aimlessly scroll for an extended period of time?" More often than not, the answer is no. I don't even need to open Screen Tariff to reach that conclusion. This additional layer of friction has been a key factor in reducing my screen time on my most distracting apps by as much as 80%.</p>
+          <h3>A Different Philosophy</h3>
+          <p>Most app blockers take on the role of a counselor, encouraging users to stay away from blocked apps through words of encouragement, breathing exercises, haikus, and similar interventions. Screen Tariff takes a different approach. You won't get any pushback from us; we're not here to tell you to touch grass.</p>
+          <p>We simply provide a way for you to decide whether accessing an app is worth the cost of sitting through an ad break. The length of that ad break and the amount of time you allow yourself to spend in the app are entirely up to you.</p>
+          <p>At its core, Screen Tariff is designed to feel like a sandbox: a space where you can experiment with different settings and find the parameters that best suit your needs for each app you choose to sanction.</p>
+          <h3>Brevity Is a Top Priority</h3>
+          <p>Screen Tariff's business model is designed to align more closely with users' interests than those of many competing app blockers, which tend to rely heavily on subscription revenue.</p>
+          <p>Leading app blockers often lock advanced features behind subscription plans, with some costing more than $100 per year. This creates an incentive to convert as many free users as possible into paying subscribers. To accomplish this, a frequent strategy is to bombard users with persistent pop-ups, promotional offers, and reminders about the features they're missing out on. For people who simply want an effective way to reduce their screen time, these interruptions can become a distraction in their own right.</p>
+          <p>Because Screen Tariff's business model centers on ad revenue, we're incentivized to make the app as transparent, efficient, and fair to users as possible. We also plan to introduce more advanced features as the app grows, making them available to all users at no additional cost.</p>
+          <h3>Personal Use Cases</h3>
+          <p>Screen Tariff was built with the goal of combating the growing addictiveness of social media. I was born in 2003, making me about as Gen Z as one can get, and I've witnessed firsthand how profoundly social media addiction can affect everyday life, particularly with the rise of the endless scroll format.</p>
+          <p>I've spent countless hours consuming content that I couldn't even remember five minutes later. Whenever I finally managed to pull myself away from a scrolling binge, I'd often feel sluggish, dazed, and regretful.</p>
+          <p>Integrating Screen Tariff into my daily routine has effectively eliminated much of the mindless scrolling that used to consume my time. I still allow myself to access this content occasionally, but the limits I set for each session serve as a useful reminder of how much time I'm spending. As a result, I feel much more in control of my attention.</p>
+          <p>Another immediate improvement has been in my morning routine. Before using Screen Tariff, my first instinct upon waking up was to unlock my phone and start scrolling through X. Now, knowing that an ad break stands between me and that first scroll, I can happily say that I never open my phone before leaving my bedroom. As a result, my days begin with considerably more clarity and energy.</p>
+          <p>Everything discussed here only scratches the surface of what Screen Tariff can offer. This app has genuinely changed my life, and I hope you'll find similar value in it.</p>
+          <p>I'm excited to hear your feedback and learn about all the different ways people are using Screen Tariff. Thank you for taking the time to read this, and I sincerely hope you enjoy everything the app has to offer!</p>
         </div>
       </section>
 
@@ -500,7 +488,7 @@ I'm excited to hear your feedback and learn about all the different ways people 
         <div class="platform" id="panel-ios" role="tabpanel" aria-labelledby="tab-ios">
           <div class="video-slot">
             <!-- TODO: replace this placeholder with the iOS tutorial video, e.g.
-                 <video src="ios-tutorial.mp4" controls playsinline poster="..."></video> -->
+                 <video src="ios-tutorial.mp4" controls playsinline poster="..."></video>  (16:9 landscape) -->
             <div>
               <div class="play" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
               <p>iOS tutorial video<br>coming soon</p>
@@ -554,7 +542,7 @@ I'm excited to hear your feedback and learn about all the different ways people 
         <div class="platform" id="panel-android" role="tabpanel" aria-labelledby="tab-android" hidden>
           <div class="video-slot">
             <!-- TODO: replace this placeholder with the Android tutorial video, e.g.
-                 <video src="android-tutorial.mp4" controls playsinline poster="..."></video> -->
+                 <video src="android-tutorial.mp4" controls playsinline poster="..."></video>  (16:9 landscape) -->
             <div>
               <div class="play" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
               <p>Android tutorial video<br>coming soon</p>
@@ -564,7 +552,7 @@ I'm excited to hear your feedback and learn about all the different ways people 
           <div class="feature">
             <div class="shot"><img src="Pixel10%20Sanctioned%20Apps%20transparent.png" alt="Screen Tariff home page on Android" width="1342" height="2798" loading="lazy"></div>
             <div>
-              <span class="tag">Home</span>
+              <span class="tag green">Home</span>
               <h3>Every sanctioned app, in one place</h3>
               <p>Your sanctioned apps live on the home page. Tap one to start its ad break, and see live unlock timers at a glance.</p>
               <ul>
@@ -577,7 +565,7 @@ I'm excited to hear your feedback and learn about all the different ways people 
           <div class="feature flip">
             <div class="shot"><img src="Pixel10%20Timer%20transparent.png" alt="Sanction setup in Timer mode on Android" width="1342" height="2798" loading="lazy"></div>
             <div>
-              <span class="tag">Timer mode</span>
+              <span class="tag green">Timer mode</span>
               <h3>Rules that fit each app</h3>
               <p>Every sanction is customizable, and setup takes under 30 seconds.</p>
               <ul>
@@ -591,8 +579,8 @@ I'm excited to hear your feedback and learn about all the different ways people 
           <div class="feature">
             <div class="shot"><img src="Pixel10%20Exit%20Out%20transparent.png" alt="Sanction setup in Exit-Out mode on Android" width="1342" height="2798" loading="lazy"></div>
             <div>
-              <span class="tag green">Android exclusive</span>
-              <h3>Exit-Out mode</h3>
+              <span class="tag green">Exit-Out mode</span>
+              <h3>Android exclusive</h3>
               <p>No timer to watch. Access stays open while you use the app, and it locks again as soon as you leave it.</p>
               <ul>
                 <li>Perfect for quick check-ins</li>
@@ -604,7 +592,7 @@ I'm excited to hear your feedback and learn about all the different ways people 
           <div class="feature flip">
             <div class="shot"><img src="Pixel10%20Insights%20transparent.png" alt="Insights on Android" width="1342" height="2798" loading="lazy"></div>
             <div>
-              <span class="tag">Insights</span>
+              <span class="tag green">Insights</span>
               <h3>See your habits change</h3>
               <p>Weekly summaries show how you really use your sanctioned apps, with a recap every Sunday.</p>
               <ul>
