@@ -137,7 +137,7 @@
        1.45s  wave 1: the slogan fades in (0.9s)
        1.76s  a light sweep glints across the slogan, left to right (0.6s). It starts as the
               slogan reaches 50% opacity (the ease-out fade hits 0.5 at ~34% of its 0.9s).
-       2.36s  wave 2: header, description, store badges and motion button fade in (0.9s) */
+       2.86s  wave 2 (0.5s after the sweep ends): header, description, store badges and motion button fade in (0.9s) */
     .hero-slogan { position: relative; animation: slogan-in 0.9s ease-out 1.45s both; }
     /* Light sweep: a glowing copy of the slogan is revealed through a narrow, slanted window
        that slides across from left to right, so a streak of light glints along the lettering. */
@@ -162,7 +162,7 @@
       92%  { opacity: 1; }
       100% { -webkit-mask-position: 18% 0; mask-position: 18% 0; opacity: 0; }
     }
-    header, .intro, .stores, .tune { animation: slogan-in 0.9s ease-out 2.36s both; }
+    header, .intro, .stores, .tune { animation: slogan-in 0.9s ease-out 2.86s both; }
     @keyframes slogan-in { from { opacity: 0; } to { opacity: 1; } }
     @media (prefers-reduced-motion: reduce) { .hero-logo, header, .hero-slogan, .hero-slogan::after, .intro, .stores, .tune { animation: none; } }
     /* The slogan image has empty space below the lettering; show only the lettering. */
@@ -283,11 +283,9 @@
       background: #2e9e57;
       box-shadow: 0 6px 18px rgba(76,208,125,0.45);
     }
-    /* Both panels share one grid cell, so the section is always as tall as the
-       taller panel and switching platforms never shifts the page. */
-    .platforms { display: grid; }
-    .platforms > .platform { grid-area: 1 / 1; }
-    .platform.inactive { visibility: hidden; pointer-events: none; }
+    /* Only the selected platform takes up space; the other is removed from the layout.
+       Everything above the panels (including the toggle) stays put when switching. */
+    .platform.inactive { display: none; }
 
     /* Tutorial video slot (landscape, 16:9) */
     .video-slot {
