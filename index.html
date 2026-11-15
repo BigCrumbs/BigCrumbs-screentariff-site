@@ -348,6 +348,21 @@
     footer nav a:last-child { margin-right: 0; }
 
     /* ── Responsive ── */
+    /* Text that sits directly on the animated background (not inside a panel):
+       brighter, with a soft shadow, so it stays readable over the ribbons. */
+    :root { --on-bg: #ececf1; --on-bg-2: #cfcfd6; }
+    nav a { color: var(--on-bg-2); }
+    .intro, .section-sub, .feature p, .feature ul { color: var(--on-bg); }
+    .eyebrow, .byline p { color: var(--on-bg-2); }
+    footer { color: var(--on-bg-2); }
+    footer nav a { color: var(--on-bg); }
+    .intro, .section-sub, .eyebrow, .feature p, .feature ul, .flow-step h3,
+    nav a, footer, .byline p, h2, .feature h3 { text-shadow: 0 1px 14px rgba(0,0,0,0.65); }
+    /* Inside panels the background is solid, so keep the original quieter greys. */
+    .why .eyebrow, .final .eyebrow { color: var(--text-3); text-shadow: none; }
+    .final .section-sub { color: var(--text-2); text-shadow: none; }
+    .why h2, .final h2 { text-shadow: none; }
+
     @media (max-width: 760px) {
       section { padding: 56px 0; }
       .flow { flex-direction: column; align-items: center; gap: 4px; }
