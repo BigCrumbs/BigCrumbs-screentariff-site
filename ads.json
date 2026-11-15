@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "slots": {
+    "interstitial": [
+      { "type": "admob", "weight": 90, "platforms": ["android"] },
+      { "id": "derickFlier", "type": "image", "file": "derickleduke_flier.png", "weight": 5, "platforms": ["android"] },
+      { "id": "fastPatch", "type": "image", "file": "fast_patch.jpg", "link": "https://www.thefastpatch.com", "weight": 5, "platforms": ["android"] },
+
+      { "id": "video1", "weight": 4, "platforms": ["ios"] },
+      { "id": "video2", "weight": 4, "platforms": ["ios"] },
+      { "id": "video3", "weight": 4, "platforms": ["ios"] },
+      { "id": "derickFlier", "weight": 39, "platforms": ["ios"] },
+      { "id": "fastPatch", "weight": 39, "platforms": ["ios"] },
+      { "id": "screenTariffGraphic", "type": "image", "file": "screen_tariff_graphic.png", "weight": 10, "platforms": ["ios"] }
+    ],
+    "interstitial15s": [
+      { "id": "derickFlier", "weight": 50, "platforms": ["android"] },
+      { "id": "fastPatch", "weight": 50, "platforms": ["android"] },
+
+      { "id": "derickFlier", "weight": 44, "platforms": ["ios"] },
+      { "id": "fastPatch", "weight": 44, "platforms": ["ios"] },
+      { "id": "screenTariffGraphic", "weight": 12, "platforms": ["ios"] }
+    ],
+    "custom2": [
+      { "id": "derickFlier", "weight": 20 },
+      { "id": "fastPatch", "weight": 20 },
+      { "type": "none", "weight": 60 }
+    ],
+    "mrec": [
+      { "type": "admob", "weight": 100, "platforms": ["android"] },
+
+      { "id": "bigCrumbs", "type": "image", "file": "bigcrumbs_mrec.png", "link": "https://www.youtube.com/@TheBigCrumbs", "weight": 50, "platforms": ["ios"] },
+      { "id": "derickLeduke", "type": "image", "file": "derick_leduke_mrec.png", "link": "https://distrokid.com/hyperfollow/derickleduke/too-late-acoustic/", "weight": 50, "platforms": ["ios"] }
+    ],
+    "rewarded": [
+      { "type": "admob", "weight": 100 }
+    ],
+    "rewardedFallback": [
+      { "id": "video1", "weight": 30, "platforms": ["ios"] },
+      { "id": "video2", "weight": 40, "platforms": ["ios"] },
+      { "id": "video3", "weight": 30, "platforms": ["ios"] }
+    ]
+  }
+}
