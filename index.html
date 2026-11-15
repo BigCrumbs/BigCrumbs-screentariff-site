@@ -367,10 +367,10 @@
       .feature ul { text-align: left; display: inline-block; }
     }
     @media (max-width: 560px) {
-      /* Portrait phones: no corner logo; all four links fit, aligned to the right. */
+      /* Portrait phones: no corner logo; all four links fit, centered. */
       header .brand { display: none; }
-      header { justify-content: flex-end; }
-      header nav { display: flex; gap: 18px; }
+      header { justify-content: center; }
+      header nav { display: flex; justify-content: center; gap: 18px; }
       header nav a { margin-left: 0; font-size: 14px; white-space: nowrap; }
       .stores img { height: 48px; }
       .why h2 { text-align: center; }
