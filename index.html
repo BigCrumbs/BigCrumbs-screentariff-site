@@ -834,11 +834,24 @@
 
   <script>
     // Header links scroll to their section without adding "#section" to the
-    // address, and a refresh always starts at the top of the page.
+    // address. A refresh keeps the visitor where they were on the page.
     (function () {
-      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       if (location.hash) history.replaceState(null, '', location.pathname + location.search);
-      window.scrollTo(0, 0);
+      // Remember the scroll position ourselves and put it back once the page has laid out,
+      // which is more reliable than the browser's own restore on a page with lazy images.
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      try {
+        var saved = sessionStorage.getItem('st-scroll');
+        if (saved !== null) {
+          var y = +saved;
+          var jump = function () { window.scrollTo({ top: y, behavior: 'instant' }); };  // no smooth glide
+          jump();
+          window.addEventListener('load', jump);
+        }
+      } catch (e) {}
+      window.addEventListener('pagehide', function () {
+        try { sessionStorage.setItem('st-scroll', String(window.scrollY)); } catch (e) {}
+      });
       document.querySelectorAll('a[href^="#"]').forEach(function (link) {
         var id = link.getAttribute('href').slice(1);
         if (!id) return;
