@@ -98,7 +98,8 @@
       padding: 48px 0 64px;
     }
     .hero-logo {
-      width: min(560px, 88vw);
+      /* never wider than the description below it (640px max, or the screen minus its side padding) */
+      width: min(620px, calc(100vw - 48px));
       margin: 0 auto;
     }
     /* Intro: the logo flickers on like a neon tube warming up, then holds steady. */
@@ -164,7 +165,7 @@
     @media (prefers-reduced-motion: reduce) { .hero-logo, header, .hero-slogan, .hero-slogan::after, .intro, .stores { animation: none; } }
     /* The slogan image has empty space below the lettering; show only the lettering. */
     .hero-slogan {
-      width: min(440px, 76vw);
+      width: min(490px, 82vw);
       aspect-ratio: 1894 / 560;
       margin: -18px auto 0;
       overflow: hidden;
