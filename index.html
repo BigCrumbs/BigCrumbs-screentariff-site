@@ -477,7 +477,7 @@
       <nav>
         <a href="#how">How it works</a>
         <a href="#features">Features</a>
-        <a href="#" onclick="return false;" aria-disabled="true">Advertise</a>
+        <a href="/advertise/">Advertise</a>
         <a class="keep" href="/terms/">Terms</a>
       </nav>
     </header>
@@ -836,12 +836,20 @@
     // Header links scroll to their section without adding "#section" to the
     // address. A refresh keeps the visitor where they were on the page.
     (function () {
+      // Arriving from another page with a section link (e.g. /#features from the Advertise page):
+      // go to that section instead of the remembered scroll position.
+      var hashTarget = location.hash ? document.getElementById(location.hash.slice(1)) : null;
       if (location.hash) history.replaceState(null, '', location.pathname + location.search);
       // Remember the scroll position ourselves and put it back once the page has laid out,
       // which is more reliable than the browser's own restore on a page with lazy images.
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      if (hashTarget) {
+        var toTarget = function () { hashTarget.scrollIntoView({ behavior: 'instant', block: 'start' }); };
+        toTarget();
+        window.addEventListener('load', toTarget);
+      }
       try {
-        var saved = sessionStorage.getItem('st-scroll');
+        var saved = hashTarget ? null : sessionStorage.getItem('st-scroll');
         if (saved !== null) {
           var y = +saved;
           var jump = function () { window.scrollTo({ top: y, behavior: 'instant' }); };  // no smooth glide
