@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "slots": {
     "interstitial": [
       { "type": "admob", "weight": 90, "platforms": ["android"] },
@@ -17,9 +17,11 @@
       { "id": "derickFlier", "weight": 50, "platforms": ["android"] },
       { "id": "fastPatch", "weight": 50, "platforms": ["android"] },
 
-      { "id": "derickFlier", "weight": 44, "platforms": ["ios"] },
-      { "id": "fastPatch", "weight": 44, "platforms": ["ios"] },
-      { "id": "screenTariffGraphic", "weight": 12, "platforms": ["ios"] }
+      { "id": "remoteTest", "type": "image", "file": "remote_test.webp", "link": "https://screentariff.com", "weight": 50, "platforms": ["ios"] },
+      { "id": "remoteTestVideo", "type": "video", "file": "remote_test_video.mp4", "link": "https://screentariff.com", "weight": 50, "platforms": ["ios"] },
+      { "id": "derickFlier", "weight": 0, "platforms": ["ios"] },
+      { "id": "fastPatch", "weight": 0, "platforms": ["ios"] },
+      { "id": "screenTariffGraphic", "weight": 0, "platforms": ["ios"] }
     ],
     "custom2": [
       { "id": "derickFlier", "weight": 20 },
