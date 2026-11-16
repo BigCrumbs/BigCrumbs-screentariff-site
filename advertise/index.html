@@ -459,39 +459,76 @@
       header nav { gap: 12px; }
       header nav a { font-size: 13px; }
     }
-    /* ── Advertise page ── */
-    .adv-hero { text-align: center; padding: 56px 0 24px; }
+    /* ── Advertise page: larger type, more structure ── */
+    body.adv section { padding: 88px 0; }
+    body.adv .eyebrow { font-size: 14px; letter-spacing: 0.2em; margin-bottom: 14px; }
+    body.adv h2 { font-size: clamp(34px, 5vw, 50px); margin-bottom: 18px; }
+    body.adv .section-sub { font-size: clamp(18px, 2.1vw, 21px); line-height: 1.6; max-width: 720px; margin-bottom: 52px; }
+
+    .adv-hero { text-align: center; padding: 72px 0 56px !important; }
     .adv-hero h1 {
-      font-size: clamp(36px, 6.4vw, 60px);
-      letter-spacing: -0.025em;
-      line-height: 1.06;
-      margin: 0 0 16px;
-      text-shadow: 0 1px 14px rgba(0,0,0,0.65);
+      font-size: clamp(44px, 7.6vw, 78px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.04;
+      margin: 0 auto 22px;
+      max-width: 900px;
+      text-shadow: 0 1px 18px rgba(0,0,0,0.7);
     }
-    .adv-hero .section-sub { margin-bottom: 0; }
-    .final .cta {
+    .adv-hero .section-sub { font-size: clamp(19px, 2.4vw, 23px); max-width: 680px; margin-bottom: 34px; }
+
+    .btn {
       display: inline-block;
-      margin-top: 26px;
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 600;
       color: #fff;
       text-decoration: none;
       background: var(--accent);
       border-radius: 999px;
-      padding: 13px 30px;
-      box-shadow: 0 6px 18px rgba(0,114,187,0.45);
-      transition: transform 0.15s ease;
+      padding: 15px 34px;
+      box-shadow: 0 8px 24px rgba(0,114,187,0.45), inset 0 0 0 1px rgba(122,190,255,0.25);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
-    .final .cta:hover { transform: translateY(-2px); }
-    .final .cta-note { margin: 14px 0 0; font-size: 15px; color: var(--text-3); }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,114,187,0.55), inset 0 0 0 1px rgba(122,190,255,0.35); }
+
+    /* Three value points in a row, separated by thin rules (no cards) */
+    .points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; max-width: 1000px; margin: 0 auto; }
+    .point { padding: 6px 34px; border-left: 1px solid rgba(255,255,255,0.14); }
+    .point:first-child { border-left: 0; }
+    .point h3 { font-size: 23px; letter-spacing: -0.01em; margin: 0 0 10px; text-shadow: 0 1px 14px rgba(0,0,0,0.65); }
+    .point p { font-size: 18px; line-height: 1.6; margin: 0; color: var(--on-bg); text-shadow: 0 1px 14px rgba(0,0,0,0.65); }
+    .point .num { display: block; font-size: 15px; font-weight: 700; letter-spacing: 0.12em; color: var(--blue); margin-bottom: 12px; text-shadow: 0 0 12px rgba(58,160,255,0.55); }
+
+    body.adv .feature { max-width: 940px; grid-template-columns: 300px 1fr; gap: 64px; }
+    body.adv .feature .shot img { width: 300px; }
+    body.adv .feature h3 { font-size: clamp(28px, 3.8vw, 38px); margin-bottom: 14px; }
+    body.adv .feature p { font-size: 20px; line-height: 1.6; margin-bottom: 18px; }
+    body.adv .feature ul { font-size: 19px; line-height: 1.55; padding-left: 22px; }
+    body.adv .feature li { margin-bottom: 10px; }
+    body.adv .feature .tag { font-size: 13px; padding: 5px 14px; margin-bottom: 16px; }
+
+    /* Specs as a clean two-column table */
+    .spec-table { max-width: 820px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.14); }
+    .spec-row { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 22px 8px; border-bottom: 1px solid rgba(255,255,255,0.14); text-align: left; }
+    .spec-row dt { font-size: 15px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); padding-top: 3px; text-shadow: 0 0 12px rgba(58,160,255,0.45); }
+    .spec-row dd { margin: 0; font-size: 19px; line-height: 1.55; color: var(--on-bg); text-shadow: 0 1px 14px rgba(0,0,0,0.65); }
+
+    body.adv .final { padding: 72px 28px; }
+    body.adv .final h2 { margin-bottom: 16px; }
+    body.adv .final .section-sub { margin-bottom: 32px; color: var(--text-2); }
     header nav a[aria-current="page"] { color: var(--text); }
-    .specs { text-align: center; }
-    .specs ul { display: inline-block; text-align: left; margin: 8px auto 0; padding-left: 20px; color: var(--on-bg); font-size: 17px; text-shadow: 0 1px 14px rgba(0,0,0,0.65); max-width: 640px; }
-    .specs li { margin-bottom: 10px; }
-    .specs strong { color: var(--text); }
+
+    @media (max-width: 760px) {
+      body.adv section { padding: 64px 0; }
+      .points { grid-template-columns: 1fr; gap: 34px; text-align: center; }
+      .point { border-left: 0; padding: 0 8px; }
+      body.adv .feature { grid-template-columns: 1fr; gap: 30px; }
+      body.adv .feature .shot img { width: 240px; }
+      .spec-row { grid-template-columns: 1fr; gap: 6px; padding: 18px 4px; }
+    }
   </style>
 </head>
-<body>
+<body class="adv">
   <canvas id="wall" aria-hidden="true"></canvas>
 
   <div class="wrap">
@@ -511,15 +548,33 @@
       <!-- ── Intro ── -->
       <section class="adv-hero">
         <p class="eyebrow">Advertise</p>
-        <h1>Advertise on Screen Tariff</h1>
-        <p class="section-sub">Your ad plays at the exact moment people pause before opening their most distracting apps.</p>
+        <h1>Reach people at the moment they pause</h1>
+        <p class="section-sub">Screen Tariff puts an ad break between people and their most distracting apps. Your brand fills that break, full screen, with nothing competing for attention.</p>
+        <a class="btn" href="mailto:ads@screentariff.com?subject=Advertising%20on%20Screen%20Tariff">Contact us for rates</a>
       </section>
 
       <!-- ── Why it works ── -->
       <section id="why-it-works">
         <p class="eyebrow">Why it works</p>
-        <h2>Reach people when they're most engaged</h2>
-        <p class="section-sub">Every Screen Tariff user chooses to sit through an ad break before opening the apps they want to use less. During that buffer, they're waiting and looking at the screen, which makes it the moment they're most engaged. Your ad isn't scrolled past or competing with a feed; it has the screen to itself.</p>
+        <h2>Users are most engaged during the buffer</h2>
+        <p class="section-sub">Every ad break is one the user chose to sit through. While it plays, they're waiting and watching the screen.</p>
+        <div class="points">
+          <div class="point">
+            <span class="num">01</span>
+            <h3>Undivided attention</h3>
+            <p>Your ad fills the screen. There's no feed to scroll and nothing else on screen.</p>
+          </div>
+          <div class="point">
+            <span class="num">02</span>
+            <h3>A deliberate moment</h3>
+            <p>People see your ad while they pause to decide whether to open an app, not while they're distracted.</p>
+          </div>
+          <div class="point">
+            <span class="num">03</span>
+            <h3>iOS and Android</h3>
+            <p>Run on one platform or both, on the dates you choose.</p>
+          </div>
+        </div>
       </section>
 
       <!-- ── Placement ── -->
@@ -533,28 +588,27 @@
           <div>
             <span class="tag">Interstitial</span>
             <h3>Your ad, full screen</h3>
-            <p>Shown during the ad break, before the user's app opens.</p>
+            <p>Shown during the ad break, right before the user's app opens.</p>
             <ul>
               <li>Image or video creative</li>
               <li>A link to your website or store page</li>
               <li>Set how long it plays before it can be skipped, up to the full ad break</li>
-              <li>Run on iOS, Android, or both</li>
               <li>Schedule start and end dates</li>
             </ul>
           </div>
         </div>
-
       </section>
 
       <!-- ── Creative specs ── -->
-      <section id="specs" class="specs">
+      <section id="specs">
         <p class="eyebrow">Creative specs</p>
         <h2>What to send us</h2>
-        <ul>
-          <li><strong>Images:</strong> WebP, portrait 9:16 (for example 900 × 1600)</li>
-          <li><strong>Videos:</strong> MP4 (H.264 video, AAC audio), 720p, about 15 to 20 seconds, under 3 MB</li>
-          <li><strong>Link:</strong> the web address you want people sent to</li>
-        </ul>
+        <p class="section-sub">Send these to ads@screentariff.com, and we'll take care of the rest.</p>
+        <dl class="spec-table">
+          <div class="spec-row"><dt>Images</dt><dd>WebP, portrait 9:16 (for example 900 × 1600)</dd></div>
+          <div class="spec-row"><dt>Videos</dt><dd>MP4 (H.264 video, AAC audio), 720p, about 15 to 20 seconds, under 3 MB</dd></div>
+          <div class="spec-row"><dt>Link</dt><dd>The web address you want people sent to</dd></div>
+        </dl>
       </section>
 
       <!-- ── Contact ── -->
@@ -563,7 +617,7 @@
           <p class="eyebrow">Get in touch</p>
           <h2>Contact us for rates</h2>
           <p class="section-sub">Pricing is set per campaign. Tell us about your brand and what you'd like to run, and we'll get back to you.</p>
-          <a class="cta" href="mailto:ads@screentariff.com?subject=Advertising%20on%20Screen%20Tariff">Email ads@screentariff.com</a>
+          <a class="btn" href="mailto:ads@screentariff.com?subject=Advertising%20on%20Screen%20Tariff">Email ads@screentariff.com</a>
         </div>
       </section>
 
