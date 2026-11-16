@@ -518,6 +518,42 @@
     body.adv .final .section-sub { margin-bottom: 32px; color: var(--text-2); }
     header nav a[aria-current="page"] { color: var(--text); }
 
+    /* Blue text links and click-to-open tooltips in the specs */
+    .text-link, .tip-link {
+      color: var(--blue);
+      text-decoration: underline;
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 3px;
+      text-shadow: 0 0 12px rgba(58,160,255,0.45);
+    }
+    .text-link:hover, .tip-link:hover, .tip-link[aria-expanded="true"] { color: #7cc0ff; }
+    .tip-link { font: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+    .spec-row { position: relative; }
+    .tip {
+      position: absolute;
+      z-index: 5;
+      width: max-content;
+      max-width: min(320px, 86vw);
+      padding: 14px 18px;
+      border-radius: 16px;
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--text);
+      text-shadow: none;
+      background: rgba(20,20,26,0.92);
+      border: 1px solid rgba(58,160,255,0.55);
+      box-shadow: 0 0 18px rgba(58,160,255,0.3), 0 14px 34px rgba(0,0,0,0.55);
+      -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    }
+    .tip strong { display: block; margin-bottom: 4px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); }
+    .tip::before {   /* little pointer up to the link */
+      content: ""; position: absolute; top: -7px; left: var(--arrow-x, 50%);
+      width: 12px; height: 12px; margin-left: -6px; transform: rotate(45deg);
+      background: rgba(20,20,26,0.92);
+      border-left: 1px solid rgba(58,160,255,0.55); border-top: 1px solid rgba(58,160,255,0.55);
+    }
+
     /* Landscape screens: the opening (title, subtext, contact button) fills the first screen,
        centered, and everything else starts below it */
     @media (orientation: landscape) {
@@ -666,11 +702,19 @@
 
       <!-- ── Creative specs ── -->
       <section id="specs">
-        <h2>What to send us</h2>
-        <p class="section-sub">Send these to ads@screentariff.com, and we'll take care of the rest.</p>
+        <h2>What to consider</h2>
+        <p class="section-sub">Send these to <a class="text-link" href="mailto:ads@screentariff.com?subject=Advertising%20on%20Screen%20Tariff">ads@screentariff.com</a>, and we'll take care of the rest.</p>
         <dl class="spec-table">
-          <div class="spec-row"><dt>Images</dt><dd>WebP, portrait 9:16 (for example 900 × 1600)</dd></div>
-          <div class="spec-row"><dt>Videos</dt><dd>MP4 (H.264 video, AAC audio), 720p, about 15 to 20 seconds, under 3 MB</dd></div>
+          <div class="spec-row">
+            <dt>Content</dt>
+            <dd>
+              <button type="button" class="tip-link" aria-expanded="false" aria-controls="tip-image">Image</button> &amp;
+              <button type="button" class="tip-link" aria-expanded="false" aria-controls="tip-video">Video</button>
+              ads are supported on Screen Tariff. Click to see accepted file types and sizes.
+              <span class="tip" id="tip-image" role="tooltip" hidden><strong>Image ads</strong>WebP, PNG or JPG, portrait 9:16 (for example 900 × 1600)</span>
+              <span class="tip" id="tip-video" role="tooltip" hidden><strong>Video ads</strong>MP4 (H.264 video, AAC audio), 720p, up to 30 seconds, under 3 MB</span>
+            </dd>
+          </div>
           <div class="spec-row"><dt>Link</dt><dd>The web address you want people sent to</dd></div>
         </dl>
       </section>
@@ -808,6 +852,44 @@
 })();
 </script>
 <script>
+  // Click-to-open tooltips for the "Image" and "Video" links: one open at a time, placed under
+  // the link and kept inside the row; closes on a second click, an outside click, or Escape.
+  (function () {
+    var links = document.querySelectorAll('.tip-link');
+    function closeAll(except) {
+      links.forEach(function (l) {
+        if (l === except) return;
+        l.setAttribute('aria-expanded', 'false');
+        document.getElementById(l.getAttribute('aria-controls')).hidden = true;
+      });
+    }
+    function place(link, tip) {
+      var row = link.closest('.spec-row');
+      var rr = row.getBoundingClientRect(), lr = link.getBoundingClientRect();
+      tip.style.left = '0px'; tip.style.top = (lr.bottom - rr.top + 12) + 'px';
+      var w = tip.offsetWidth, centre = lr.left - rr.left + lr.width / 2;
+      var left = Math.max(0, Math.min(rr.width - w, centre - w / 2));
+      tip.style.left = left + 'px';
+      tip.style.setProperty('--arrow-x', Math.max(14, Math.min(w - 14, centre - left)) + 'px');
+    }
+    links.forEach(function (link) {
+      var tip = document.getElementById(link.getAttribute('aria-controls'));
+      link.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = link.getAttribute('aria-expanded') !== 'true';
+        closeAll(link);
+        link.setAttribute('aria-expanded', open ? 'true' : 'false');
+        tip.hidden = !open;
+        if (open) place(link, tip);
+      });
+    });
+    document.addEventListener('click', function (e) { if (!e.target.closest('.tip')) closeAll(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
+    addEventListener('resize', function () {
+      links.forEach(function (l) { if (l.getAttribute('aria-expanded') === 'true') place(l, document.getElementById(l.getAttribute('aria-controls'))); });
+    });
+  })();
+
   // Header height, so the opening can fill exactly the rest of the first screen on landscape screens.
   (function () {
     var hd = document.querySelector('header');
