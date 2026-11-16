@@ -555,6 +555,7 @@
       border-left: 1px solid rgba(58,160,255,0.55); border-top: 1px solid rgba(58,160,255,0.55);
     }
 
+
     /* Landscape screens: the opening (title, subtext, contact button) fills the first screen,
        centered, and everything else starts below it */
     @media (orientation: landscape) {
@@ -566,11 +567,23 @@
         box-sizing: border-box;
       }
     }
+    /* "Advertise on" with the Screen Tariff logo on the line below */
+    .adv-hero h1 .hero-mark {
+      display: block;
+      width: min(520px, 78vw);
+      height: auto;
+      margin: 10px auto 0;
+    }
+    @media (orientation: landscape) {
+      .adv-hero h1 .hero-mark { width: min(520px, 78vw, 62vh); }   /* keep it all on the first screen */
+    }
     /* Short landscape screens (phones turned sideways): scale the opening to the screen height so it all fits */
     @media (orientation: landscape) and (max-height: 600px) {
-      .adv-hero h1 { font-size: min(11.5vh, 7.6vw); margin-bottom: 2.6vh; }
-      .adv-hero .section-sub { font-size: max(14px, 3.9vh); margin-bottom: 3.6vh; }
+      .adv-hero { padding: 10px 0 !important; }
+      .adv-hero h1 { font-size: min(9.6vh, 6.6vw); margin-bottom: 2.2vh; }
+      .adv-hero .section-sub { font-size: max(13px, 3.5vh); margin-bottom: 3vh; }
       .adv-hero .btn { font-size: 16px; padding: 11px 26px; }
+      .adv-hero h1 .hero-mark { width: 44vh; margin-top: 4px; }
     }
     /* The three points sit in glossy, see-through glass panels */
     .points { gap: 22px; }
@@ -659,7 +672,7 @@
     <main>
       <!-- ── Intro ── -->
       <section class="adv-hero">
-        <h1>Reach people at the moment they pause</h1>
+        <h1>Advertise on<img class="hero-mark" src="../Screen%20Tariff%20Logo%20T2.webp" alt="Screen Tariff" width="1910" height="823"></h1>
         <p class="section-sub">Screen Tariff puts an ad break between people and their most distracting apps. Your brand fills that break, full screen, with nothing competing for attention.</p>
         <a class="btn" href="mailto:ads@screentariff.com?subject=Advertising%20on%20Screen%20Tariff">Contact us for rates</a>
       </section>
