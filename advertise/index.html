@@ -518,6 +518,15 @@
     body.adv .final .section-sub { margin-bottom: 32px; color: var(--text-2); }
     header nav a[aria-current="page"] { color: var(--text); }
 
+    /* Everything centered */
+    .points, .point { text-align: center; }
+    body.adv .feature, body.adv .feature.flip { grid-template-columns: 1fr; gap: 34px; text-align: center; max-width: 720px; }
+    body.adv .feature .shot img { margin: 0 auto; }
+    body.adv .feature ul { list-style: none; padding-left: 0; display: block; text-align: center; }
+    body.adv .feature li { margin-bottom: 12px; }
+    body.adv .feature li::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 8px rgba(58,160,255,0.8); margin: 0 12px 3px 0; vertical-align: middle; }
+    .spec-row { grid-template-columns: 1fr; gap: 8px; text-align: center; padding: 24px 8px; }
+
     @media (max-width: 760px) {
       body.adv section { padding: 64px 0; }
       .points { grid-template-columns: 1fr; gap: 34px; text-align: center; }
