@@ -1,29 +1,26 @@
 {
-  "version": 11,
-  "slotNames": {
-    "interstitial": "Interstitial Slot 1",
-    "interstitial15s": "Interstitial Slot 1 (15s breaks)",
-    "custom2": "Interstitial Slot 2"
+  "version": 13,
+  "slotInfo": {
+    "primaryInterstitial":    { "name": "Primary Interstitial", "skipChoices": { "15s": [6, 15], "30s+": [6, 15, 30] } },
+    "secondaryInterstitialA": { "name": "Secondary Interstitial A", "skipChoices": [6, 15], "minSecsLeftExclusive": 15 },
+    "secondaryInterstitialB": { "name": "Secondary Interstitial B", "skipChoices": [6], "minSecsLeftExclusive": 6, "maxSecsLeftExclusive": 15 }
   },
   "slots": {
-    "interstitial": [
-      { "type": "admob", "weight": 90, "platforms": ["android"] },
-      { "id": "derickFlier", "type": "image", "file": "derickleduke_flier.png", "link": "https://beacons.ai/derickleduke", "weight": 5, "skipAfter": 6, "platforms": ["android"] },
-      { "id": "fastPatch", "type": "image", "file": "fast_patch.jpg", "link": "https://www.thefastpatch.com", "weight": 5, "skipAfter": 6, "platforms": ["android"] },
+    "primaryInterstitial": [
+      { "type": "admob", "weight": 90, "minBuffer": 30, "platforms": ["android"] },
+      { "id": "derickFlier", "type": "image", "file": "derickleduke_flier.png", "link": "https://beacons.ai/derickleduke", "weight": 5, "skipAfter": [15, 6], "platforms": ["android"] },
+      { "id": "fastPatch", "type": "image", "file": "fast_patch.jpg", "link": "https://www.thefastpatch.com", "weight": 5, "skipAfter": [15, 6], "platforms": ["android"] },
 
-      { "id": "derickFlier", "weight": 44, "skipAfter": 6, "platforms": ["ios"] },
-      { "id": "fastPatch", "weight": 44, "skipAfter": 6, "platforms": ["ios"] },
-      { "id": "screenTariffGraphic", "type": "image", "file": "screen_tariff_graphic.png", "link": "https://screentariff.com/", "weight": 12, "skipAfter": 6, "platforms": ["ios"] }
+      { "id": "derickFlier", "weight": 44, "skipAfter": [15, 6], "platforms": ["ios"] },
+      { "id": "fastPatch", "weight": 44, "skipAfter": [15, 6], "platforms": ["ios"] },
+      { "id": "screenTariffGraphic", "type": "image", "file": "screen_tariff_graphic.png", "link": "https://screentariff.com/", "weight": 12, "skipAfter": [15, 6], "platforms": ["ios"] }
     ],
-    "interstitial15s": [
-      { "id": "derickFlier", "weight": 50, "skipAfter": 15 },
-      { "id": "fastPatch", "weight": 50, "skipAfter": 15 }
-    ],
-    "custom2": [
+    "secondaryInterstitialA": [
       { "id": "derickFlier", "weight": 20, "skipAfter": 6 },
       { "id": "fastPatch", "weight": 20, "skipAfter": 6 },
       { "type": "none", "weight": 60 }
     ],
+    "secondaryInterstitialB": [],
     "mrec": [
       { "type": "admob", "weight": 100, "platforms": ["android"] },
 
@@ -33,6 +30,8 @@
     "rewarded": [
       { "type": "admob", "weight": 100 }
     ],
-    "rewardedFallback": []
+    "rewardedFallback": [
+      { "type": "none", "weight": 100 }
+    ]
   }
 }
