@@ -1019,6 +1019,7 @@
           panels[key].setAttribute('aria-hidden', on ? 'false' : 'true');
           panels[key].inert = !on;
         }
+        window.dispatchEvent(new Event('scroll'));   // update the newly shown slot's outline light right away
       }
       tabs.ios.addEventListener('click', function () { select('ios'); });
       tabs.android.addEventListener('click', function () { select('android'); });
@@ -1077,8 +1078,10 @@
     function update() {
       queued = false;
       var vh = window.innerHeight || 1;
+      // The iOS and Android tutorial slots sit in the same spot, so both follow the visible one.
+      var shownSlot = Array.prototype.find.call(document.querySelectorAll('.video-slot.trace'), function (v) { return v.offsetParent !== null; });
       panels.forEach(function (el) {
-        var r = el.getBoundingClientRect();
+        var r = (el.classList.contains('video-slot') && shownSlot ? shownSlot : el).getBoundingClientRect();
         // Panels that expand (the Story) use their collapsed height, so the gloss covers the same
         // distance and evaporates at the same scroll point whether the panel is open or closed.
         var fixed = el.getAttribute('data-gloss-height');
