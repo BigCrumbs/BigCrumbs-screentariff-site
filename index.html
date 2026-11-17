@@ -581,6 +581,10 @@
     @media (min-width: 761px) and (max-height: 760px) { .intro { font-size: 16px; margin: 10px auto 14px; } }
     .hero-slogan img { transform: translateY(-35.5%); }                 /* skip the empty band above the lettering */
     .hero-slogan::after { inset: 0 0 auto 0; height: auto; aspect-ratio: 900 / 394; transform: translateY(-35.5%); }
+    /* Big Crumbs logo links to thebigcrumbs.com */
+    .byline a { display: inline-block; transition: transform 0.18s ease, filter 0.18s ease; }
+    .byline a:hover { transform: translateY(-2px); filter: brightness(1.12); }
+    .byline a:focus-visible { outline: 2px solid #9fd0ff; outline-offset: 4px; border-radius: 8px; }
   </style>
 </head>
 <body>
@@ -828,7 +832,7 @@
       <!-- ── An app by ── -->
       <div class="byline">
         <p>An app by</p>
-        <img src="The%20Big%20Crumbs%20Logo.webp" alt="Big Crumbs" width="680" height="463" loading="lazy">
+        <a href="https://thebigcrumbs.com" target="_blank" rel="noopener noreferrer" aria-label="Big Crumbs (opens in a new tab)"><img src="The%20Big%20Crumbs%20Logo.webp" alt="Big Crumbs" width="680" height="463" loading="lazy"></a>
       </div>
     </main>
 
@@ -1027,8 +1031,21 @@
       var body = document.getElementById('why-body');
       var btn = document.getElementById('why-toggle');
       var COLLAPSED = 230;
+      // Reopen it straight away (no animation) if it was expanded before a refresh.
+      try {
+        if (sessionStorage.getItem('st-why-open') === '1') {
+          var tr = body.style.transition; body.style.transition = 'none';
+          box.classList.add('open');
+          body.style.maxHeight = body.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+          btn.textContent = 'Show less';
+          void body.offsetHeight; body.style.transition = tr;
+          window.addEventListener('load', function () { body.style.maxHeight = body.scrollHeight + 'px'; });
+        }
+      } catch (e) {}
       btn.addEventListener('click', function () {
         var open = !box.classList.contains('open');
+        try { sessionStorage.setItem('st-why-open', open ? '1' : '0'); } catch (e) {}
         box.classList.toggle('open', open);
         body.style.maxHeight = open ? body.scrollHeight + 'px' : COLLAPSED + 'px';
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
