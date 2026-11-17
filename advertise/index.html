@@ -516,6 +516,8 @@
     @media (max-width: 560px) and (max-height: 800px) { .adv-hero { padding-top: 24px !important; } }   /* matches the home page on short phones */
     /* Lift the opening by 60px on wider screens ("Advertise on" starts up beside the corner logo). The home page mirrors this. */
     @media (min-width: 561px) { .adv-hero h1 { margin-top: -60px !important; } }
+    /* "Contact us for rates" in the opening: 40% larger */
+    .adv-hero .btn { font-size: 25px; padding: 21px 48px; }
     /* No header links on this page; on phones keep the corner logo (sized so the header matches the home page's height) */
     @media (max-width: 560px) {
       body.adv header .brand { display: block; }
@@ -615,8 +617,9 @@
        centered, and everything else starts below it */
     @media (orientation: landscape) {
       .adv-hero {
-        min-height: calc(100vh - var(--header-h, 76px));
-        min-height: calc(100svh - var(--header-h, 76px));
+        /* the first screen also shows the next heading, with its subtext just below the bottom edge */
+        min-height: calc(100vh - var(--header-h, 76px) - var(--peek, 0px));
+        min-height: calc(100svh - var(--header-h, 76px) - var(--peek, 0px));
         display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
         box-sizing: border-box;
       }
@@ -635,7 +638,7 @@
     @media (orientation: landscape) and (max-height: 600px) {
       .adv-hero h1 { font-size: min(9.6vh, 6.6vw); margin-bottom: 2.2vh; }
       .adv-hero .section-sub { font-size: max(13px, 3.5vh); margin-bottom: 3vh; }
-      .adv-hero .btn { font-size: 16px; padding: 11px 26px; }
+      .adv-hero .btn { font-size: 22px; padding: 15px 36px; }   /* 40% larger than before */
       .adv-hero h1 .hero-mark { width: 48vh; margin-top: 2px; }
     }
     /* The three points sit in glossy, see-through glass panels */
@@ -978,7 +981,17 @@
   // Header height, so the opening can fill exactly the rest of the first screen on landscape screens.
   (function () {
     var hd = document.querySelector('header');
-    function setH() { if (hd) document.documentElement.style.setProperty('--header-h', hd.offsetHeight + 'px'); }
+    function setH() {
+      if (hd) document.documentElement.style.setProperty('--header-h', hd.offsetHeight + 'px');
+      // Peek: the next section's top padding plus its heading, so the heading ends just inside the
+      // first screen and the line under it starts just below it.
+      var sec = document.getElementById('why-it-works'), h2 = sec && sec.querySelector('h2');
+      if (h2) {
+        var gap = parseFloat(getComputedStyle(h2).marginBottom) || 18;
+        var peek = parseFloat(getComputedStyle(sec).paddingTop) + h2.offsetHeight + gap / 2;
+        document.documentElement.style.setProperty('--peek', peek + 'px');
+      }
+    }
     setH(); addEventListener('resize', setH);
   })();
 
