@@ -633,6 +633,10 @@
     .glass.tip-scope { overflow: visible; padding: 38px 40px 36px; }   /* visible so the tooltips aren't clipped */
     body.adv .final.glass { background: linear-gradient(165deg, rgba(28,28,34,0.82) 0%, rgba(10,10,14,0.86) 50%, rgba(4,4,6,0.92) 100%); border-radius: 28px; }
     .glass > .tip { position: absolute; z-index: 6; }   /* keep tooltips floating, not in the text flow */
+    figure.shot { margin: 0; }
+    .shot-caption { margin-top: 14px; font-size: 14px; letter-spacing: 0.02em; color: var(--on-bg-2); text-shadow: 0 1px 14px rgba(0,0,0,0.65); }
+    .shot-caption a { color: inherit; text-decoration: none; transition: color 0.15s ease; }
+    .shot-caption a:hover { color: var(--text); }
     /* Everything centered */
     .points, .point { text-align: center; }
     body.adv .feature, body.adv .feature.flip { grid-template-columns: 1fr; gap: 34px; text-align: center; max-width: none; }   /* panel spans the same width as the contact panel */
@@ -703,7 +707,7 @@
         <p class="section-sub">Bring your brand to center stage.</p>
 
         <div class="feature">
-          <div class="shot"><img src="../iPhone14%20Ad%20Window.webp" alt="A full-screen ad shown during a Screen Tariff ad break" width="1368" height="2730" loading="lazy"></div>
+          <figure class="shot"><img src="Derick%20Website%20Ad.webp" alt="A full-screen ad shown during a Screen Tariff ad break" width="1026" height="2048" loading="lazy"><figcaption class="shot-caption"><a href="https://beacons.ai/derickleduke" target="_blank" rel="noopener noreferrer">Derick LeDuke, Singer-Songwriter</a></figcaption></figure>
           <div class="tip-scope glass">
             <h3>Your ad, your terms</h3>
             <p>Ad campaigns on Screen Tariff are dynamic and fully customizable.</p>
