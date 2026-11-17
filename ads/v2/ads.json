@@ -1,0 +1,39 @@
+{
+  "version": 15,
+  "slotInfo": {
+    "primaryInterstitial":    { "name": "Primary Interstitial", "skipChoices": { "15s": [6, 15], "30s+": [6, 15, 30] } },
+    "secondaryInterstitialA": { "name": "Secondary Interstitial A", "skipChoices": [6, 15], "minSecsLeftExclusive": 15 },
+    "secondaryInterstitialB": { "name": "Secondary Interstitial B", "skipChoices": [6], "minSecsLeftExclusive": 6, "maxSecsLeftExclusive": 15 }
+  },
+  "slots": {
+    "primaryInterstitial": [
+      { "type": "admob", "weight": 90, "minBuffer": 30, "platforms": ["android"] },
+      { "id": "derickFlier", "type": "image", "file": "derickleduke_flier.png", "link": "https://beacons.ai/derickleduke", "weight": 5, "skipAfter": [6, 6], "platforms": ["android"] },
+      { "id": "fastPatch", "type": "image", "file": "fast_patch.jpg", "link": "https://www.thefastpatch.com", "weight": 5, "skipAfter": [6, 6], "platforms": ["android"] },
+
+      { "id": "derickFlier", "weight": 44, "skipAfter": [6, 6], "platforms": ["ios"] },
+      { "id": "fastPatch", "weight": 44, "skipAfter": [6, 6], "platforms": ["ios"] },
+      { "id": "screenTariffGraphic", "type": "image", "file": "screen_tariff_graphic.png", "link": "https://screentariff.com/", "weight": 12, "skipAfter": [6, 6], "platforms": ["ios"] }
+    ],
+    "secondaryInterstitialA": [
+      { "id": "derickFlier", "weight": 20, "skipAfter": 6 },
+      { "id": "fastPatch", "weight": 20, "skipAfter": 6 },
+      { "type": "none", "weight": 60 }
+    ],
+    "secondaryInterstitialB": [
+      { "id": "screenTariffGraphic", "weight": 100, "skipAfter": 6 }
+    ],
+    "mrec": [
+      { "type": "admob", "weight": 100, "platforms": ["android"] },
+
+      { "id": "bigCrumbs", "type": "image", "file": "bigcrumbs_mrec.png", "link": "https://www.youtube.com/@TheBigCrumbs", "weight": 50, "platforms": ["ios"] },
+      { "id": "derickLeduke", "type": "image", "file": "derick_leduke_mrec.png", "link": "https://distrokid.com/hyperfollow/derickleduke/too-late-acoustic/", "weight": 50, "platforms": ["ios"] }
+    ],
+    "rewarded": [
+      { "type": "admob", "weight": 100 }
+    ],
+    "rewardedFallback": [
+      { "type": "none", "weight": 100 }
+    ]
+  }
+}
