@@ -1,5 +1,5 @@
 {
-  "version": 13,
+  "version": 14,
   "slotInfo": {
     "primaryInterstitial":    { "name": "Primary Interstitial", "skipChoices": { "15s": [6, 15], "30s+": [6, 15, 30] } },
     "secondaryInterstitialA": { "name": "Secondary Interstitial A", "skipChoices": [6, 15], "minSecsLeftExclusive": 15 },
@@ -20,7 +20,9 @@
       { "id": "fastPatch", "weight": 20, "skipAfter": 6 },
       { "type": "none", "weight": 60 }
     ],
-    "secondaryInterstitialB": [],
+    "secondaryInterstitialB": [
+      { "id": "screenTariffGraphic", "weight": 100, "skipAfter": 6 }
+    ],
     "mrec": [
       { "type": "admob", "weight": 100, "platforms": ["android"] },
 
