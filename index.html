@@ -573,6 +573,9 @@
     @media (orientation: landscape) { :root { --adv-logo-w: min(680px, 88vw, 74vh); } }
     @media (orientation: landscape) and (max-height: 600px) { :root { --adv-logo-w: 48vh; --adv-gap: 2.2vh; } }
     .hero-slogan { aspect-ratio: 900 / 128; margin: calc((var(--adv-logo-w) - var(--home-logo-w)) * 0.4309 + var(--adv-gap)) auto 0; }
+    /* Same logo size as the Advertise page (its top edge and the slogan below stay where they are) */
+    :root { --home-logo-w: var(--adv-logo-w); }
+    .hero-logo { width: var(--adv-logo-w); }
     /* shorter laptops: tighten the description so the store badges still fit on the first screen */
     @media (min-width: 761px) and (max-height: 760px) { .intro { font-size: 16px; margin: 10px auto 14px; } }
     .hero-slogan img { transform: translateY(-35.5%); }                 /* skip the empty band above the lettering */
