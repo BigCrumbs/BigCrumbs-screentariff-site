@@ -563,6 +563,11 @@
     .trace.phone.derick::after { inset: 1.46% 2.92%; border-radius: 13.6% / 6.6%; }
     /* store badges: rounded like the badge artwork */
     .stores a.trace::after { border-radius: 2.7% / 9.2%; }
+    /* Slogan: crop to the lettering and tuck it under the logo */
+    .hero-slogan { aspect-ratio: 900 / 128; margin: -30px auto 0; }
+    @media (max-width: 560px) { .hero-slogan { margin-top: -20px; } }   /* smaller logo on phones: keep the slogan clear of its descenders */
+    .hero-slogan img { transform: translateY(-35.5%); }                 /* skip the empty band above the lettering */
+    .hero-slogan::after { inset: 0 0 auto 0; height: auto; aspect-ratio: 900 / 394; transform: translateY(-35.5%); }
   </style>
 </head>
 <body>
