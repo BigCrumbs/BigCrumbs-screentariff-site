@@ -637,7 +637,6 @@
     @media (orientation: landscape) and (max-height: 600px) {
       .adv-hero h1 { font-size: min(9.6vh, 6.6vw); margin-bottom: 2.2vh; }
       .adv-hero .section-sub { font-size: max(13px, 3.5vh); margin-bottom: 3vh; }
-      .adv-hero .btn { font-size: 22px; padding: 15px 36px; }   /* 40% larger than before */
       .adv-hero h1 .hero-mark { width: 48vh; margin-top: 2px; }
     }
     /* The three points sit in glossy, see-through glass panels */
@@ -756,6 +755,13 @@
     .byline a { display: inline-block; transition: transform 0.18s ease, filter 0.18s ease; }
     .byline a:hover { transform: translateY(-2px); filter: brightness(1.12); }
     .byline a:focus-visible { outline: 2px solid #9fd0ff; outline-offset: 4px; border-radius: 8px; }
+    /* Buttons stay on one line. "Contact us for rates" keeps the same size in landscape and portrait;
+       on screens too narrow for it, both buttons scale down together instead of wrapping. */
+    .btn { white-space: nowrap; }
+    .adv-hero .btn { font-size: min(25px, 5.6vw); padding: min(21px, 4.6vw) min(48px, 8vw); }
+    .final .btn { font-size: min(18px, 4.3vw); padding: min(15px, 3.6vw) min(34px, 6vw); }
+    /* "Your ad, your terms" panel: same width as the home page's "Why Screen Tariff?" panel */
+    .glass.tip-scope { width: 100%; max-width: 720px; margin-left: auto; margin-right: auto; box-sizing: border-box; }
     /* Everything centered */
     .points, .point { text-align: center; }
     body.adv .feature, body.adv .feature.flip { grid-template-columns: 1fr; gap: 34px; text-align: center; max-width: none; }   /* panel spans the same width as the contact panel */
