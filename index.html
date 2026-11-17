@@ -521,6 +521,7 @@
     /* Invisible copy of the Advertise page's "Advertise on" line (same size and spacing) */
     .hero-spacer { visibility: hidden; pointer-events: none; font-size: clamp(44px, 7.6vw, 78px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 6px; }
     @media (orientation: landscape) and (max-height: 600px) { .hero-spacer { font-size: min(9.6vh, 6.6vw); margin-bottom: 2px; } }
+    @media (min-width: 561px) { .hero-spacer { margin-top: -60px; } }   /* mirrors the Advertise page's 60px lift */
     /* With the opening pushed down, shrink the logo, slogan and gaps on shorter screens so the store badges stay on the first screen */
     @media (min-width: 761px) and (max-height: 860px) {
       .hero-slogan { width: min(465px, 82vw, 45vh); }
