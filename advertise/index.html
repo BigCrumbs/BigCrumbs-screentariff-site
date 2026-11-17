@@ -762,6 +762,9 @@
     .final .btn { font-size: min(18px, 4.3vw); padding: min(15px, 3.6vw) min(34px, 6vw); }
     /* "Your ad, your terms" panel: same width as the home page's "Why Screen Tariff?" panel */
     .glass.tip-scope { width: 100%; max-width: 720px; margin-left: auto; margin-right: auto; box-sizing: border-box; }
+    /* "Full-screen ad breaks": just under the size of "Advertise on" (about 88%) */
+    #placement h2 { font-size: clamp(39px, 6.7vw, 68px); line-height: 1.1; }
+    @media (orientation: landscape) and (max-height: 600px) { #placement h2 { font-size: min(8.4vh, 5.8vw); } }
     /* Everything centered */
     .points, .point { text-align: center; }
     body.adv .feature, body.adv .feature.flip { grid-template-columns: 1fr; gap: 34px; text-align: center; max-width: none; }   /* panel spans the same width as the contact panel */
