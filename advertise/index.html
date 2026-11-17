@@ -5,22 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#050508">
   <meta name="color-scheme" content="dark">
-  <title>Screen Tariff — Sanction Your Distractions</title>
-  <meta name="description" content="Screen Tariff is a free app blocker that puts an ad break between you and your most distracting apps. Every feature is free: no subscription, no paywalls, no signup.">
-  <script>
-    // Play the intro only on the first visit in this browser session.
-    // Coming from another page's corner logo (/?intro) always plays it, starting at the top.
-    if (/[?&]intro(=|&|$)/.test(location.search)) {
-      document.documentElement.classList.add('play-intro');
-      try { sessionStorage.setItem('st-intro-seen', '1'); sessionStorage.removeItem('st-scroll'); } catch (e) {}
-      history.replaceState(null, '', location.pathname + location.hash);
-    } else {
-      try { if (!sessionStorage.getItem('st-intro-seen')) { document.documentElement.classList.add('play-intro'); sessionStorage.setItem('st-intro-seen', '1'); } }
-      catch (e) { document.documentElement.classList.add('play-intro'); }
-    }
-  </script>
-  <link rel="icon" type="image/png" href="Screen%20Tariff%20Block%20Icon%202.png">
-  <link rel="apple-touch-icon" href="Screen%20Tariff%20Block%20Icon%202.png">
+  <title>Advertise on Screen Tariff</title>
+  <meta name="description" content="Advertise on Screen Tariff: full-screen ads shown during the ad break people wait through before opening their most distracting apps. Contact us for rates.">
+  <link rel="icon" type="image/png" href="../Screen%20Tariff%20Block%20Icon%202.png">
+  <link rel="apple-touch-icon" href="../Screen%20Tariff%20Block%20Icon%202.png">
   <style>
     :root {
       --bg: #050508;
@@ -512,25 +500,194 @@
     }
     .point, .glass { box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -1px 0 rgba(255,255,255,0.06), 0 20px 44px rgba(0,0,0,0.6); }
     /* Story and Philosophy panels: glass instead of solid grey */
-    .why.glass::after { background-size: 100% min(300%, 1440px); }
-    .why.glass.open::after { background-size: 100% var(--edge-size, 1440px); background-position: 0 var(--edge-y, -1440px); }
     .why.glass, .final.glass { background: linear-gradient(165deg, rgba(28,28,34,0.82) 0%, rgba(10,10,14,0.86) 50%, rgba(4,4,6,0.92) 100%); }
     /* The collapsed story fades out with a mask (the old fade was painted in the solid panel colour) */
     .why .why-body::after { display: none; }
     .why:not(.open) .why-body { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 110px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 110px), transparent); }
-    /* Invisible copy of the Advertise page's "Advertise on" line (same size and spacing) */
-    .hero-spacer { visibility: hidden; pointer-events: none; font-size: clamp(44px, 7.6vw, 78px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 6px; }
-    @media (orientation: landscape) and (max-height: 600px) { .hero-spacer { font-size: min(9.6vh, 6.6vw); margin-bottom: 2px; } }
-    /* With the opening pushed down, shrink the logo, slogan and gaps on shorter screens so the store badges stay on the first screen */
-    @media (min-width: 761px) and (max-height: 860px) {
-      .hero-logo { width: min(590px, calc(100vw - 48px), 58vh); }
-      .hero-slogan { width: min(465px, 82vw, 45vh); }
-      .intro { margin: 16px auto 20px; }
+    /* ── Advertise page: larger type, more structure ── */
+    body.adv section { padding: 88px 0; }
+    body.adv .eyebrow { font-size: 14px; letter-spacing: 0.2em; margin-bottom: 14px; }
+    body.adv h2 { font-size: clamp(34px, 5vw, 50px); margin-bottom: 18px; }
+    body.adv .section-sub { font-size: clamp(18px, 2.1vw, 21px); line-height: 1.6; max-width: 720px; margin-bottom: 52px; }
+
+    /* Same top spacing as the home page's opening, so the big logo lines up with the home page logo */
+    .adv-hero { text-align: center; padding: 48px 0 56px !important; }
+    @media (min-width: 761px) and (max-height: 860px) { .adv-hero { padding-top: 24px !important; } }
+    @media (max-width: 560px) and (max-height: 800px) { .adv-hero { padding-top: 24px !important; } }   /* matches the home page on short phones */
+    /* No header links on this page; on phones keep the corner logo (sized so the header matches the home page's height) */
+    @media (max-width: 560px) {
+      body.adv header .brand { display: block; }
+      body.adv header .brand img { height: 22px; }
     }
-    @media (max-width: 560px) and (max-height: 800px) {
-      .hero { padding-top: 24px; }
-      .intro { margin: 18px auto 22px; }
+    .adv-hero h1 {
+      font-size: clamp(44px, 7.6vw, 78px);
+      font-weight: 700;              /* same weight, spacing and leading as the home page headings */
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin: 0 auto 22px;
+      max-width: 900px;
+      text-shadow: 0 1px 18px rgba(0,0,0,0.7);
     }
+    .adv-hero .section-sub { font-size: clamp(19px, 2.4vw, 23px); max-width: 680px; margin-bottom: 34px; }
+
+    .btn {
+      display: inline-block;
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      background: var(--accent);
+      border-radius: 999px;
+      padding: 15px 34px;
+      box-shadow: 0 8px 24px rgba(0,114,187,0.45), inset 0 0 0 1px rgba(122,190,255,0.25);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,114,187,0.55), inset 0 0 0 1px rgba(122,190,255,0.35); }
+
+    /* Three value points in a row, separated by thin rules (no cards) */
+    .points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; max-width: 1000px; margin: 0 auto; }
+    .point { padding: 6px 34px; border-left: 1px solid rgba(255,255,255,0.14); }
+    .point:first-child { border-left: 0; }
+    .point h3 { font-size: 23px; font-weight: 700; margin: 0 0 10px; white-space: nowrap; line-height: 1.25; text-shadow: 0 1px 14px rgba(0,0,0,0.65); }
+    .point p { font-size: 18px; line-height: 1.6; margin: 0; color: var(--on-bg); text-shadow: 0 1px 14px rgba(0,0,0,0.65); }
+    .point .num { display: block; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--blue); margin-bottom: 12px; text-shadow: none; }
+
+    body.adv .feature { max-width: 940px; grid-template-columns: 300px 1fr; gap: 64px; }
+    body.adv .feature .shot img { width: 300px; }
+    body.adv .feature h3 { font-size: clamp(28px, 3.8vw, 38px); margin-bottom: 14px; }
+    body.adv .feature p { font-size: 20px; line-height: 1.6; margin-bottom: 18px; }
+    body.adv .feature ul { font-size: 19px; line-height: 1.55; padding-left: 22px; }
+    body.adv .feature li { margin-bottom: 10px; }
+    body.adv .feature .tag { font-size: 13px; padding: 5px 14px; margin-bottom: 16px; }
+
+    /* Specs as a clean two-column table */
+    .spec-table { max-width: 820px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.14); }
+    .spec-row { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 22px 8px; border-bottom: 1px solid rgba(255,255,255,0.14); text-align: left; }
+    .spec-row dt { font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); padding-top: 3px; text-shadow: none; }
+    .spec-row dd { margin: 0; font-size: 19px; line-height: 1.55; color: var(--on-bg); text-shadow: 0 1px 14px rgba(0,0,0,0.65); }
+
+    body.adv .final { padding: 72px 28px; }
+    body.adv .final h2 { margin-bottom: 16px; }
+    body.adv .final .section-sub { margin-bottom: 32px; color: var(--text-2); }
+    header nav a[aria-current="page"] { color: var(--text); }
+
+    /* Blue text links and click-to-open tooltips in the specs */
+    .text-link, .tip-link {
+      color: var(--blue);
+      text-decoration: underline;
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 3px;
+      text-shadow: none;
+    }
+    .tip-link { text-decoration: none; }   /* Image / video: blue, no underline */
+    .text-link:hover, .tip-link:hover, .tip-link[aria-expanded="true"] { color: #7cc0ff; }
+    .tip-link { font: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+    .tip-scope { position: relative; }
+    body.adv .feature .feature-note { margin: 22px 0 0; font-size: 18px; }
+    .tip {
+      position: absolute;
+      z-index: 5;
+      width: max-content;
+      max-width: min(320px, 86vw);
+      padding: 14px 18px;
+      border-radius: 16px;
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--text);
+      text-shadow: none;
+      background: #0e0e12;
+      border: 1px solid rgba(58,160,255,0.55);
+      box-shadow: 0 0 18px rgba(58,160,255,0.3), 0 14px 34px rgba(0,0,0,0.55);
+    }
+    .tip strong { display: block; margin-bottom: 4px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); }
+    .tip::before {   /* little pointer up to the link */
+      content: ""; position: absolute; top: -7px; left: var(--arrow-x, 50%);
+      width: 12px; height: 12px; margin-left: -6px; transform: rotate(45deg);
+      background: #0e0e12;
+      border-left: 1px solid rgba(58,160,255,0.55); border-top: 1px solid rgba(58,160,255,0.55);
+    }
+
+
+    /* Landscape screens: the opening (title, subtext, contact button) fills the first screen,
+       centered, and everything else starts below it */
+    @media (orientation: landscape) {
+      .adv-hero {
+        min-height: calc(100vh - var(--header-h, 76px));
+        min-height: calc(100svh - var(--header-h, 76px));
+        display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+        box-sizing: border-box;
+      }
+    }
+    /* "Advertise on" with the Screen Tariff logo on the line below */
+    .adv-hero h1 .hero-mark {
+      display: block;
+      width: min(680px, 88vw);
+      height: auto;
+      margin: 6px auto 0;
+    }
+    @media (orientation: landscape) {
+      .adv-hero h1 .hero-mark { width: min(680px, 88vw, 74vh); }   /* keep it all on the first screen */
+    }
+    /* Short landscape screens (phones turned sideways): scale the opening to the screen height so it all fits */
+    @media (orientation: landscape) and (max-height: 600px) {
+      .adv-hero h1 { font-size: min(9.6vh, 6.6vw); margin-bottom: 2.2vh; }
+      .adv-hero .section-sub { font-size: max(13px, 3.5vh); margin-bottom: 3vh; }
+      .adv-hero .btn { font-size: 16px; padding: 11px 26px; }
+      .adv-hero h1 .hero-mark { width: 48vh; margin-top: 2px; }
+    }
+    /* The three points sit in glossy, see-through glass panels */
+    .points { gap: 22px; }
+    .point, .glass {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 28px 32px;
+      border: 1px solid rgba(255,255,255,0.16) !important;
+      border-radius: 24px;
+      background: linear-gradient(165deg, rgba(28,28,34,0.82) 0%, rgba(10,10,14,0.86) 50%, rgba(4,4,6,0.92) 100%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(255,255,255,0.04), 0 18px 40px rgba(0,0,0,0.45);
+    }
+    /* the gloss: a soft sheen across the top of each panel */
+    .point::before, .glass::before {
+      content: "";
+      position: absolute; left: 0; right: 0; top: 0; height: var(--gloss-h, 75%); opacity: var(--gloss-o, 1);   /* pushed up and evaporated as the panel is scrolled up the screen */
+      /* glossy black: a bright reflection on the upper half that ends in a soft edge, like lacquer */
+      background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.11) 40%, rgba(255,255,255,0.04) 75%, rgba(255,255,255,0) 100%);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+    .point > *, .glass > * { position: relative; z-index: 1; }
+    /* Reflection on the border only: a bright stretch of the panel's edge that travels
+       down its sides as the panel is scrolled past */
+    .point::after, .glass::after {
+      content: "";
+      position: absolute; inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;                       /* thickness of the lit edge */
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0) 38%,
+        rgba(255,255,255,0.55) 46%,
+        rgba(255,255,255,0.95) 50%,
+        rgba(255,255,255,0.55) 54%,
+        rgba(255,255,255,0) 62%) no-repeat;
+      background-size: 100% 300%;
+      background-position: 0 var(--sheen-pos, 80%);
+      /* show the gradient only in the 1.5px ring around the edge */
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+              mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+      pointer-events: none;
+    }
+    .point, .glass { box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -1px 0 rgba(255,255,255,0.06), 0 20px 44px rgba(0,0,0,0.6); }
+    /* The ad-details text and the contact panel use the same glass */
+    .glass.tip-scope { overflow: visible; padding: 38px 40px 36px; }   /* visible so the tooltips aren't clipped */
+    body.adv .final.glass { background: linear-gradient(165deg, rgba(28,28,34,0.82) 0%, rgba(10,10,14,0.86) 50%, rgba(4,4,6,0.92) 100%); border-radius: 28px; }
+    .glass > .tip { position: absolute; z-index: 6; }   /* keep tooltips floating, not in the text flow */
+    figure.shot { margin: 0; }
+    .shot-caption { margin-top: 14px; font-size: 14px; letter-spacing: 0.02em; color: var(--on-bg-2); text-shadow: 0 1px 14px rgba(0,0,0,0.65); }
+    .shot-caption a { color: inherit; text-decoration: none; transition: color 0.15s ease; }
+    .shot-caption a:hover { color: var(--text); }
     /* ── Static dark panels: no grey gloss, just the moving light on the outline ── */
     .point::before, .glass::before { display: none !important; }
 
@@ -563,258 +720,101 @@
     .trace.phone.derick::after { inset: 1.46% 2.92%; border-radius: 13.6% / 6.6%; }
     /* store badges: rounded like the badge artwork */
     .stores a.trace::after { border-radius: 2.7% / 9.2%; }
-    /* Slogan: crop to the lettering and tuck it under the logo */
-    .hero-slogan { aspect-ratio: 900 / 128; margin: -14px auto 0; }
-    .hero-slogan img { transform: translateY(-35.5%); }                 /* skip the empty band above the lettering */
-    .hero-slogan::after { inset: 0 0 auto 0; height: auto; aspect-ratio: 900 / 394; transform: translateY(-35.5%); }
+    /* Everything centered */
+    .points, .point { text-align: center; }
+    body.adv .feature, body.adv .feature.flip { grid-template-columns: 1fr; gap: 34px; text-align: center; max-width: none; }   /* panel spans the same width as the contact panel */
+    body.adv .feature .shot img { margin: 0 auto; }
+    body.adv .feature ul { list-style: none; padding-left: 0; display: block; text-align: center; }
+    body.adv .feature li { margin-bottom: 12px; }
+    body.adv .feature li::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff; margin: 0 12px 3px 0; vertical-align: middle; }
+    .spec-row { grid-template-columns: 1fr; gap: 8px; text-align: center; padding: 24px 8px; }
+
+    @media (max-width: 760px) {
+      body.adv section { padding: 64px 0; }
+      .points { grid-template-columns: 1fr; gap: 34px; text-align: center; }
+      .point { padding: 28px 22px; }
+      .glass.tip-scope { padding: 30px 22px; }
+      body.adv .feature { grid-template-columns: 1fr; gap: 30px; }
+      body.adv .feature .shot img { width: 240px; }
+      .spec-row { grid-template-columns: 1fr; gap: 6px; padding: 18px 4px; }
+    }
   </style>
 </head>
-<body>
+<body class="adv">
   <canvas id="wall" aria-hidden="true"></canvas>
 
   <div class="wrap">
     <header>
-      <a class="brand" href="/" aria-label="Screen Tariff home">
-        <img src="Screen%20Tariff%20Logo%20T2.webp" alt="Screen Tariff" width="1910" height="823">
+      <a class="brand" href="/?intro" aria-label="Screen Tariff home">
+        <img src="../Screen%20Tariff%20Logo%20T2.webp" alt="Screen Tariff" width="1910" height="823">
       </a>
-      <nav>
-        <a href="#how">How it works</a>
-        <a href="#features">Features</a>
-        <a href="/advertise/">Advertise</a>
-        <a class="keep" href="/terms/">Terms</a>
-      </nav>
     </header>
 
     <main>
-      <!-- ── Hero ── -->
-      <section class="hero">
-        <div class="hero-spacer" aria-hidden="true">Advertise on</div>
-        <img class="hero-logo" src="Screen%20Tariff%20Logo%20T2.webp" alt="Screen Tariff" width="1910" height="823">
-        <div class="hero-slogan">
-          <img src="Screen%20Tariff%20Slogan%20T2.webp" alt="Sanction Your Distractions" width="1894" height="830">
-        </div>
-        <p class="intro">Screen Tariff is an app blocker that puts an ad break between you and your most distracting apps: just enough friction to make you think twice. Set a rule for every app, track your habits with weekly insights, and unlock on your terms. <strong>Every feature is free, with no subscription, no paywalls, and no signup.</strong></p>
-        <div class="stores">
-          <!-- TODO: replace href with the App Store link once the iOS app is live -->
-          <a class="trace" target="_blank" rel="noopener noreferrer" href="#" aria-label="Download on the App Store">
-            <img src="app%20store.webp" alt="Download on the App Store" width="3800" height="1127">
-          </a>
-          <a class="trace" target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.bigcrumbs.screentariff" aria-label="Get it on Google Play">
-            <img src="google%20play.webp" alt="Get it on Google Play" width="3800" height="1127">
-          </a>
-        </div>
+      <!-- ── Intro ── -->
+      <section class="adv-hero">
+        <h1>Advertise on<img class="hero-mark" src="../Screen%20Tariff%20Logo%20T2.webp" alt="Screen Tariff" width="1910" height="823"></h1>
+        <p class="section-sub">Screen Tariff puts an ad break between people and their most distracting apps. Your brand fills that break, full screen, with nothing competing for attention.</p>
+        <a class="btn" href="mailto:ads@screentariff.com?subject=Advertising%20on%20Screen%20Tariff">Contact us for rates</a>
       </section>
 
-      <!-- ── How it works ── -->
-      <section id="how">
-        <p class="eyebrow">How it works</p>
-        <h2>Three steps between you and the scroll</h2>
-        <p class="section-sub">Create a rule, called a sanction, for each app you want to manage.</p>
-        <div class="flow">
-          <div class="flow-step">
-            <span class="trace phone"><img src="iPhone14%20Lock%20Screen.webp" alt="A phone screen showing a lock" width="1368" height="2730" loading="lazy"></span>
-            <h3>Block Distracting Apps</h3>
+      <!-- ── Why it works ── -->
+      <section id="why-it-works">
+        <h2>Users are most engaged during the buffer window</h2>
+        <p class="section-sub">Every ad break is one the user chose to sit through. While it plays, they're waiting and watching the screen.</p>
+        <div class="points">
+          <div class="point">
+            <h3>Undivided<br>Attention</h3>
+            <p>Your ad fills the screen. There's no feed to scroll and nothing else on screen.</p>
           </div>
-          <div class="flow-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="point">
+            <h3>Integrate into<br>the user's flow</h3>
+            <p>People see your ad while they pause to decide whether to open an app, not while they're distracted.</p>
           </div>
-          <div class="flow-step">
-            <span class="trace phone"><img src="iPhone14%20Ad%20Window.webp" alt="A phone screen playing an ad" width="1368" height="2730" loading="lazy"></span>
-            <h3>Watch an Ad Break</h3>
-          </div>
-          <div class="flow-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </div>
-          <div class="flow-step">
-            <span class="trace phone"><img src="iPhone14%20Social%20Media%20transparent.webp" alt="A phone showing a social media feed" width="1368" height="2730" loading="lazy"></span>
-            <h3>Unlock on Your Terms</h3>
+          <div class="point">
+            <h3>Premium<br>Retention</h3>
+            <p>Ads shown on Screen Tariff are predictable and expected by users, so they're watched as part of the routine rather than skipped as an interruption.</p>
           </div>
         </div>
       </section>
 
-      <!-- ── Why Screen Tariff ── -->
-      <section id="why">
-        <div class="why glass" data-gloss-height="480">
-          <p class="eyebrow" style="text-align:left">The story</p>
-          <h2>Why Screen Tariff?</h2>
-          <div class="why-body" id="why-body">
-            <p>Screen Tariff was conceptualized, designed, and built with the goal of rethinking how users interact with app-blocking tools. By introducing an ad break before allowing access to a distracting app, Screen Tariff adds an entirely new layer of friction to the user experience. Take it from me: I'm a frequent user of Screen Tariff myself.</p>
-            <p>Every time I impulsively open my phone to access an app like YouTube or Instagram, I'm now forced to ask myself: "Do I really want to sit through an ad break just to aimlessly scroll for an extended period of time?" More often than not, the answer is no. I don't even need to open Screen Tariff to reach that conclusion. This additional layer of friction has been a key factor in reducing my screen time on my most distracting apps by as much as 80%.</p>
-            <h3>A Different Philosophy</h3>
-            <p>Most app blockers take on the role of a counselor, encouraging users to stay away from blocked apps through words of encouragement, breathing exercises, haikus, and similar interventions. Screen Tariff takes a different approach. You won't get any pushback from us; we're not here to tell you to touch grass.</p>
-            <p>We simply provide a way for you to decide whether accessing an app is worth the cost of sitting through an ad break. The length of that ad break and the amount of time you allow yourself to spend in the app are entirely up to you.</p>
-            <p>At its core, Screen Tariff is designed to feel like a sandbox: a space where you can experiment with different settings and find the parameters that best suit your needs for each app you choose to sanction.</p>
-            <h3>Brevity Is a Top Priority</h3>
-            <p>Screen Tariff's business model is designed to align more closely with users' interests than those of many competing app blockers, which tend to rely heavily on subscription revenue.</p>
-            <p>Leading app blockers often lock advanced features behind subscription plans, with some costing more than $100 per year. This creates an incentive to convert as many free users as possible into paying subscribers. To accomplish this, a frequent strategy is to bombard users with persistent pop-ups, promotional offers, and reminders about the features they're missing out on. For people who simply want an effective way to reduce their screen time, these interruptions can become a distraction in their own right.</p>
-            <p>Because Screen Tariff's business model centers on ad revenue, we're incentivized to make the app as transparent, efficient, and fair to users as possible. We also plan to introduce more advanced features as the app grows, making them available to all users at no additional cost.</p>
-            <h3>Personal Use Cases</h3>
-            <p>Screen Tariff was built with the goal of combating the growing addictiveness of social media. I was born in 2003, making me about as Gen Z as one can get, and I've witnessed firsthand how profoundly social media addiction can affect everyday life, particularly with the rise of the endless scroll format.</p>
-            <p>I've spent countless hours consuming content that I couldn't even remember five minutes later. Whenever I finally managed to pull myself away from a scrolling binge, I'd often feel sluggish, dazed, and regretful.</p>
-            <p>Integrating Screen Tariff into my daily routine has effectively eliminated much of the mindless scrolling that used to consume my time. I still allow myself to access this content occasionally, but the limits I set for each session serve as a useful reminder of how much time I'm spending. As a result, I feel much more in control of my attention.</p>
-            <p>Another immediate improvement has been in my morning routine. Before using Screen Tariff, my first instinct upon waking up was to unlock my phone and start scrolling through X. Now, knowing that an ad break stands between me and that first scroll, I can happily say that I never open my phone before leaving my bedroom. As a result, my days begin with considerably more clarity and energy.</p>
-            <p>Everything discussed here only scratches the surface of what Screen Tariff can offer. This app has genuinely changed my life, and I hope you'll find similar value in it.</p>
-            <p>I'm excited to hear your feedback and learn about all the different ways people are using Screen Tariff. Thank you for taking the time to read this, and I sincerely hope you enjoy everything the app has to offer!</p>
+      <!-- ── Placement ── -->
+      <section id="placement">
+        <h2>Full-screen ad breaks</h2>
+        <p class="section-sub">Bring your brand to center stage.</p>
+
+        <div class="feature">
+          <figure class="shot"><span class="trace phone derick"><img src="Derick%20Website%20Ad.webp" alt="A full-screen ad shown during a Screen Tariff ad break" width="1026" height="2048" loading="lazy"></span><figcaption class="shot-caption"><a href="https://beacons.ai/derickleduke" target="_blank" rel="noopener noreferrer">Derick LeDuke, Singer-Songwriter</a></figcaption></figure>
+          <div class="tip-scope glass">
+            <h3>Your ad, your terms</h3>
+            <p>Ad campaigns on Screen Tariff are dynamic and fully customizable.</p>
+            <ul>
+              <li><button type="button" class="tip-link" aria-expanded="false" aria-controls="tip-image">Image</button> or <button type="button" class="tip-link" aria-expanded="false" aria-controls="tip-video">video</button> creative</li>
+              <li>A link to your website or store page</li>
+              <li>Choose how long the ad stays unskippable</li>
+              <li>Set your campaign duration</li>
+              <li>Choose to appear in 15s, 30s, or 60s ad blocks</li>
+            </ul>
+            <span class="tip" id="tip-image" role="tooltip" hidden><strong>Image ads</strong>WebP, PNG, JPG or PDF<br>Recommended ratios: 9:16, 4:5 or 16:9</span>
+            <span class="tip" id="tip-video" role="tooltip" hidden><strong>Video ads</strong>MP4 (H.264 video, AAC audio), 720p, up to 30 seconds, under 3 MB</span>
           </div>
-          <button type="button" class="why-toggle" id="why-toggle" aria-expanded="false" aria-controls="why-body">Read the full story</button>
         </div>
       </section>
 
-      <!-- ── Features (platform-specific) ── -->
-      <section id="features">
-        <p class="eyebrow">Features</p>
-        <h2>Built around your habits</h2>
-        <p class="section-sub">Choose your platform to see how Screen Tariff works on your device.</p>
 
-        <div class="toggle" role="tablist" aria-label="Platform">
-          <button type="button" role="tab" id="tab-ios" aria-controls="panel-ios" aria-selected="true">iOS</button>
-          <button type="button" role="tab" id="tab-android" aria-controls="panel-android" aria-selected="false">Android</button>
-        </div>
-
-        <div class="platforms">
-        <!-- iOS -->
-        <div class="platform" id="panel-ios" role="tabpanel" aria-labelledby="tab-ios">
-          <div class="video-slot trace">
-            <!-- TODO: replace this placeholder with the iOS tutorial video, e.g.
-                 <video src="ios-tutorial.mp4" controls playsinline poster="..."></video>  (16:9 landscape) -->
-            <div>
-              <div class="play" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-              <p>iOS tutorial video<br>coming soon</p>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="shot"><span class="trace phone"><img src="iPhone14%20Sanctioned%20Apps%20transparent.webp" alt="Screen Tariff home page on iPhone" width="1368" height="2730" loading="lazy"></span></div>
-            <div>
-              <span class="tag">Home</span>
-              <h3>Every sanctioned app, in one place</h3>
-              <p>Your sanctioned apps live on the home page. Tap one to start its ad break, and see live unlock timers at a glance.</p>
-              <ul>
-                <li>Sort by the apps you open most</li>
-                <li>Drag an Express Pass onto an app to skip its ad break</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature flip">
-            <div class="shot"><span class="trace phone"><img src="iPhone14%20Settings%20transparent.webp" alt="Sanction setup on iPhone" width="1368" height="2730" loading="lazy"></span></div>
-            <div>
-              <span class="tag">Sanctions</span>
-              <h3>Rules that fit each app</h3>
-              <p>Every sanction is customizable, and setup takes under 30 seconds.</p>
-              <ul>
-                <li>Unlock for 1 to 60 minutes; the app relocks automatically</li>
-                <li>Choose a 15, 30 or 60 second ad break</li>
-                <li>Get a relock warning at a time you choose</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="shot"><span class="trace phone"><img src="iPhone14%20Insights%20transparent.webp" alt="Insights on iPhone" width="1368" height="2730" loading="lazy"></span></div>
-            <div>
-              <span class="tag">Insights</span>
-              <h3>See your habits change</h3>
-              <p>Weekly summaries show how you really use your sanctioned apps, with a recap every Sunday.</p>
-              <ul>
-                <li>Total sessions and your most accessed apps</li>
-                <li>Time unlocked across your sanctioned apps</li>
-                <li>How often you cancel an ad break instead of unlocking</li>
-                <li>Each week compared with your recent average</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Android -->
-        <div class="platform inactive" id="panel-android" role="tabpanel" aria-labelledby="tab-android" aria-hidden="true" inert>
-          <div class="video-slot trace">
-            <!-- TODO: replace this placeholder with the Android tutorial video, e.g.
-                 <video src="android-tutorial.mp4" controls playsinline poster="..."></video>  (16:9 landscape) -->
-            <div>
-              <div class="play" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-              <p>Android tutorial video<br>coming soon</p>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="shot"><span class="trace phone pixel"><img src="Pixel10%20Sanctioned%20Apps%20transparent.webp" alt="Screen Tariff home page on Android" width="1342" height="2798" loading="lazy"></span></div>
-            <div>
-              <span class="tag green">Home</span>
-              <h3>Every sanctioned app, in one place</h3>
-              <p>Your sanctioned apps live on the home page. Tap one to start its ad break, and see live unlock timers at a glance.</p>
-              <ul>
-                <li>Sort by the apps you open most</li>
-                <li>Drag an Express Pass onto an app to skip its ad break</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature flip">
-            <div class="shot"><span class="trace phone pixel"><img src="Pixel10%20Timer%20transparent.webp" alt="Sanction setup in Timer mode on Android" width="1342" height="2798" loading="lazy"></span></div>
-            <div>
-              <span class="tag green">Timer mode</span>
-              <h3>On the Clock</h3>
-              <p>Decide up front how long you get, and when time's up, the app locks itself again. No willpower required.</p>
-              <ul>
-                <li>Unlock for 1 to 60 minutes; the app relocks automatically</li>
-                <li>Choose a 15, 30 or 60 second ad break</li>
-                <li>Get a relock warning at a time you choose</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="shot"><span class="trace phone pixel"><img src="Pixel10%20Exit%20Out%20transparent.webp" alt="Sanction setup in Exit-Out mode on Android" width="1342" height="2798" loading="lazy"></span></div>
-            <div>
-              <div class="tags"><span class="tag green">Exit-Out mode</span><span class="tag gold">Android exclusive</span></div>
-              <h3>Unblock à la Carte</h3>
-              <p>No timer to watch. Access stays open while you use the app, and it locks again as soon as you leave it.</p>
-              <ul>
-                <li>Perfect for quick check-ins</li>
-                <li>Currently in early access</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature flip">
-            <div class="shot"><span class="trace phone pixel"><img src="Pixel10%20Insights%20transparent.webp" alt="Insights on Android" width="1342" height="2798" loading="lazy"></span></div>
-            <div>
-              <span class="tag green">Insights</span>
-              <h3>See your habits change</h3>
-              <p>Weekly summaries show how you really use your sanctioned apps, with a recap every Sunday.</p>
-              <ul>
-                <li>Total sessions and your most accessed apps</li>
-                <li>Time spent in your sanctioned apps</li>
-                <li>How often you cancel an ad break instead of unlocking</li>
-                <li>Each week compared with your recent average</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        </div>
-
-      </section>
-
-      <!-- ── Final thoughts ── -->
+      <!-- ── Contact ── -->
       <section class="final-wrap">
         <div class="final glass">
-          <p class="eyebrow">Our philosophy</p>
-          <h2>No noise. No gimmicks.</h2>
-          <p class="section-sub">A clean, focused tool that does exactly what it needs to do, and nothing more. Every feature, now and in the future, is free. Your data stays on your device.</p>
-          <ul class="nos">
-            <li>No signup</li>
-            <li>No subscription</li>
-            <li>No paywalls</li>
-            <li>No streaks</li>
-          </ul>
+          <h2>Contact us for rates</h2>
+          <p class="section-sub">Pricing is set per campaign. Tell us about your brand and what you'd like to run, and we'll get back to you.</p>
+          <a class="btn" href="mailto:ads@screentariff.com?subject=Advertising%20on%20Screen%20Tariff">Email ads@screentariff.com</a>
         </div>
       </section>
 
       <!-- ── An app by ── -->
       <div class="byline">
         <p>An app by</p>
-        <img src="The%20Big%20Crumbs%20Logo.webp" alt="Big Crumbs" width="680" height="463" loading="lazy">
+        <img src="../The%20Big%20Crumbs%20Logo.webp" alt="Big Crumbs" width="680" height="463" loading="lazy">
       </div>
     </main>
 
@@ -827,7 +827,6 @@
       </nav>
     </footer>
   </div>
-
 
 <script>
 (() => {
@@ -935,107 +934,52 @@
   requestAnimationFrame(frame);
 })();
 </script>
-
-  <script>
-    // Header links scroll to their section without adding "#section" to the
-    // address. A refresh keeps the visitor where they were on the page.
-    (function () {
-      // Arriving from another page with a section link (e.g. /#features from the Advertise page):
-      // go to that section instead of the remembered scroll position.
-      var hashTarget = location.hash ? document.getElementById(location.hash.slice(1)) : null;
-      if (location.hash) history.replaceState(null, '', location.pathname + location.search);
-      // Remember the scroll position ourselves and put it back once the page has laid out,
-      // which is more reliable than the browser's own restore on a page with lazy images.
-      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      if (hashTarget) {
-        var toTarget = function () { hashTarget.scrollIntoView({ behavior: 'instant', block: 'start' }); };
-        toTarget();
-        window.addEventListener('load', toTarget);
-      }
-      try {
-        var saved = hashTarget ? null : sessionStorage.getItem('st-scroll');
-        if (saved !== null) {
-          var y = +saved;
-          var jump = function () { window.scrollTo({ top: y, behavior: 'instant' }); };  // no smooth glide
-          jump();
-          window.addEventListener('load', jump);
-        }
-      } catch (e) {}
-      window.addEventListener('pagehide', function () {
-        try { sessionStorage.setItem('st-scroll', String(window.scrollY)); } catch (e) {}
-      });
-      document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-        var id = link.getAttribute('href').slice(1);
-        if (!id) return;
-        link.addEventListener('click', function (e) {
-          var target = document.getElementById(id);
-          if (!target) return;
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-      });
-    })();
-
-    // Tapping the corner logo replays the intro from the top of the page.
-    (function () {
-      var brand = document.querySelector('header .brand');
-      if (!brand) return;
-      brand.addEventListener('click', function (e) {
-        e.preventDefault();
-        var root = document.documentElement;
-        window.scrollTo({ top: 0, behavior: 'auto' });
-        root.classList.remove('play-intro');
-        void root.offsetWidth;            // restart the animations
-        root.classList.add('play-intro');
-      });
-    })();
-
-    (function () {
-      var tabs = { ios: document.getElementById('tab-ios'), android: document.getElementById('tab-android') };
-      var panels = { ios: document.getElementById('panel-ios'), android: document.getElementById('panel-android') };
-      function select(name) {
-        for (var key in tabs) {
-          var on = key === name;
-          tabs[key].setAttribute('aria-selected', on ? 'true' : 'false');
-          panels[key].classList.toggle('inactive', !on);
-          panels[key].setAttribute('aria-hidden', on ? 'false' : 'true');
-          panels[key].inert = !on;
-        }
-      }
-      tabs.ios.addEventListener('click', function () { select('ios'); });
-      tabs.android.addEventListener('click', function () { select('android'); });
-      // Android visitors see Android first; everyone else sees iOS.
-      if (/Android/i.test(navigator.userAgent)) select('android');
-    })();
-
-    (function () {
-      var box = document.querySelector('.why');
-      var body = document.getElementById('why-body');
-      var btn = document.getElementById('why-toggle');
-      var COLLAPSED = 230;
-      btn.addEventListener('click', function () {
-        var open = !box.classList.contains('open');
-        box.classList.toggle('open', open);
-        body.style.maxHeight = open ? body.scrollHeight + 'px' : COLLAPSED + 'px';
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        btn.textContent = open ? 'Show less' : 'Read the full story';
-        window.dispatchEvent(new Event('scroll'));
-        if (!open) {
-          // As the story shrinks, scroll by the same amount so the button stays put on screen.
-          var anchorTop = btn.getBoundingClientRect().top, until = performance.now() + 700;
-          (function hold() {
-            var drift = btn.getBoundingClientRect().top - anchorTop;
-            if (Math.abs(drift) > 0.5) window.scrollBy({ top: drift, behavior: 'instant' });
-            if (performance.now() < until) requestAnimationFrame(hold);
-          })();
-        }
-      });
-      window.addEventListener('resize', function () {
-        if (box.classList.contains('open')) body.style.maxHeight = body.scrollHeight + 'px';
-      });
-    })();
-  </script>
 <script>
+  // Click-to-open tooltips for the "Image" and "Video" links: one open at a time, placed under
+  // the link and kept inside the row; closes on a second click, an outside click, or Escape.
+  (function () {
+    var links = document.querySelectorAll('.tip-link');
+    function closeAll(except) {
+      links.forEach(function (l) {
+        if (l === except) return;
+        l.setAttribute('aria-expanded', 'false');
+        document.getElementById(l.getAttribute('aria-controls')).hidden = true;
+      });
+    }
+    function place(link, tip) {
+      var row = link.closest('.tip-scope');
+      var rr = row.getBoundingClientRect(), lr = link.getBoundingClientRect();
+      tip.style.left = '0px'; tip.style.top = (lr.bottom - rr.top + 12) + 'px';
+      var w = tip.offsetWidth, centre = lr.left - rr.left + lr.width / 2;
+      var left = Math.max(0, Math.min(rr.width - w, centre - w / 2));
+      tip.style.left = left + 'px';
+      tip.style.setProperty('--arrow-x', Math.max(14, Math.min(w - 14, centre - left)) + 'px');
+    }
+    links.forEach(function (link) {
+      var tip = document.getElementById(link.getAttribute('aria-controls'));
+      link.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = link.getAttribute('aria-expanded') !== 'true';
+        closeAll(link);
+        link.setAttribute('aria-expanded', open ? 'true' : 'false');
+        tip.hidden = !open;
+        if (open) place(link, tip);
+      });
+    });
+    document.addEventListener('click', function (e) { if (!e.target.closest('.tip')) closeAll(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
+    addEventListener('resize', function () {
+      links.forEach(function (l) { if (l.getAttribute('aria-expanded') === 'true') place(l, document.getElementById(l.getAttribute('aria-controls'))); });
+    });
+  })();
+
+  // Header height, so the opening can fill exactly the rest of the first screen on landscape screens.
+  (function () {
+    var hd = document.querySelector('header');
+    function setH() { if (hd) document.documentElement.style.setProperty('--header-h', hd.offsetHeight + 'px'); }
+    setH(); addEventListener('resize', setH);
+  })();
+
   // Moves each glass panel's reflection with its position on screen, so the light
   // sweeps across the panel as it's scrolled past.
   (function () {
@@ -1048,21 +992,8 @@
       var vh = window.innerHeight || 1;
       panels.forEach(function (el) {
         var r = el.getBoundingClientRect();
-        // Panels that expand (the Story) use their collapsed height, so the gloss covers the same
-        // distance and evaporates at the same scroll point whether the panel is open or closed.
-        var fixed = el.getAttribute('data-gloss-height');
-        var ph = fixed ? Math.min(r.height, +fixed) : r.height;
-        if (fixed) el.style.setProperty('--gloss-px', ph + 'px');
-        if (fixed && el.classList.contains('open')) {
-          // the light sits on the edges at the height of the middle of the screen
-          var y = Math.max(-60, Math.min(r.height + 60, vh / 2 - r.top));
-          // same lit length as when collapsed: the gradient is 3x the collapsed panel's height
-          var size = 3 * Math.min(+fixed, 471);
-          el.style.setProperty('--edge-size', size + 'px');
-          el.style.setProperty('--edge-y', (y - size / 2).toFixed(1) + 'px');
-        }
         // 0 when the panel's centre is at the bottom of the screen, 1 when it reaches the top
-        var t = 1 - (r.top + ph / 2) / vh;
+        var t = 1 - (r.top + r.height / 2) / vh;
         t = Math.max(-0.2, Math.min(1.2, t));
         el.style.setProperty('--sheen-pos', (80 - t * 60).toFixed(2) + '%');   // the lit stretch travels from the top edge to the bottom edge
         // The grey gloss gets pushed up by the black as the panel rises: full when the panel's
@@ -1071,7 +1002,7 @@
         // Once the black has filled in, it stays: scrolling back up never brings the grey back.
         el._gloss = Math.min(el._gloss === undefined ? 1 : el._gloss, f);
         f = el._gloss;
-        el.style.setProperty('--gloss-h', fixed ? (0.75 * ph * f).toFixed(1) + 'px' : (75 * f).toFixed(2) + '%');
+        el.style.setProperty('--gloss-h', (75 * f).toFixed(2) + '%');
         el.style.setProperty('--gloss-o', Math.min(1, f * 4).toFixed(3));   // the last sliver fades out (evaporates)
       });
     }
