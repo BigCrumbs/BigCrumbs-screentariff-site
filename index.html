@@ -464,6 +464,51 @@
       header nav { gap: 12px; }
       header nav a { font-size: 13px; }
     }
+    /* ── Glossy black glass panels (same as the Advertise page) ── */
+    .point, .glass {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 28px 32px;
+      border: 1px solid rgba(255,255,255,0.16) !important;
+      border-radius: 24px;
+      background: linear-gradient(165deg, rgba(28,28,34,0.82) 0%, rgba(10,10,14,0.86) 50%, rgba(4,4,6,0.92) 100%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(255,255,255,0.04), 0 18px 40px rgba(0,0,0,0.45);
+    }
+    .point::before, .glass::before {
+      content: "";
+      position: absolute; left: 0; right: 0; top: 0; height: var(--gloss-h, 75%); opacity: var(--gloss-o, 1);   /* pushed up and evaporated as the panel is scrolled up the screen */
+      /* glossy black: a bright reflection on the upper half that ends in a soft edge, like lacquer */
+      background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.11) 40%, rgba(255,255,255,0.04) 75%, rgba(255,255,255,0) 100%);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+    .point > *, .glass > * { position: relative; z-index: 1; }
+    .point::after, .glass::after {
+      content: "";
+      position: absolute; inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;                       /* thickness of the lit edge */
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0) 38%,
+        rgba(255,255,255,0.55) 46%,
+        rgba(255,255,255,0.95) 50%,
+        rgba(255,255,255,0.55) 54%,
+        rgba(255,255,255,0) 62%) no-repeat;
+      background-size: 100% 300%;
+      background-position: 0 var(--sheen-pos, 80%);
+      /* show the gradient only in the 1.5px ring around the edge */
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+              mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+      pointer-events: none;
+    }
+    .point, .glass { box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -1px 0 rgba(255,255,255,0.06), 0 20px 44px rgba(0,0,0,0.6); }
+    /* Story and Philosophy panels: glass instead of solid grey */
+    .why.glass, .final.glass { background: linear-gradient(165deg, rgba(28,28,34,0.82) 0%, rgba(10,10,14,0.86) 50%, rgba(4,4,6,0.92) 100%); }
+    /* The collapsed story fades out with a mask (the old fade was painted in the solid panel colour) */
+    .why .why-body::after { display: none; }
+    .why:not(.open) .why-body { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 110px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 110px), transparent); }
   </style>
 </head>
 <body>
@@ -530,7 +575,7 @@
 
       <!-- ── Why Screen Tariff ── -->
       <section id="why">
-        <div class="why">
+        <div class="why glass">
           <p class="eyebrow" style="text-align:left">The story</p>
           <h2>Why Screen Tariff?</h2>
           <div class="why-body" id="why-body">
@@ -694,7 +739,7 @@
 
       <!-- ── Final thoughts ── -->
       <section class="final-wrap">
-        <div class="final">
+        <div class="final glass">
           <p class="eyebrow">Our philosophy</p>
           <h2>No noise. No gimmicks.</h2>
           <p class="section-sub">A clean, focused tool that does exactly what it needs to do, and nothing more. Every feature, now and in the future, is free. Your data stays on your device.</p>
@@ -922,5 +967,35 @@
       });
     })();
   </script>
+<script>
+  // Moves each glass panel's reflection with its position on screen, so the light
+  // sweeps across the panel as it's scrolled past.
+  (function () {
+    var panels = document.querySelectorAll('.point, .glass');
+    if (!panels.length) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;   // keep a still sheen
+    var queued = false;
+    function update() {
+      queued = false;
+      var vh = window.innerHeight || 1;
+      panels.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        // 0 when the panel's centre is at the bottom of the screen, 1 when it reaches the top
+        var t = 1 - (r.top + r.height / 2) / vh;
+        t = Math.max(-0.2, Math.min(1.2, t));
+        el.style.setProperty('--sheen-pos', (80 - t * 60).toFixed(2) + '%');   // the lit stretch travels from the top edge to the bottom edge
+        // The grey gloss gets pushed up by the black as the panel rises: full when the panel's
+        // centre is at the bottom of the screen, gone once it's 66% of the way up the screen.
+        var f = Math.max(0, Math.min(1, 1 - t / 0.66));
+        el.style.setProperty('--gloss-h', (75 * f).toFixed(2) + '%');
+        el.style.setProperty('--gloss-o', Math.min(1, f * 4).toFixed(3));   // the last sliver fades out (evaporates)
+      });
+    }
+    function queue() { if (!queued) { queued = true; requestAnimationFrame(update); } }
+    addEventListener('scroll', queue, { passive: true });
+    addEventListener('resize', queue);
+    update();
+  })();
+</script>
 </body>
 </html>
