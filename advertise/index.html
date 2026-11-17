@@ -617,9 +617,8 @@
        centered, and everything else starts below it */
     @media (orientation: landscape) {
       .adv-hero {
-        /* the first screen also shows the next heading, with its subtext just below the bottom edge */
-        min-height: calc(100vh - var(--header-h, 76px) - var(--peek, 0px));
-        min-height: calc(100svh - var(--header-h, 76px) - var(--peek, 0px));
+        min-height: calc(100vh - var(--header-h, 76px));
+        min-height: calc(100svh - var(--header-h, 76px));
         display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
         box-sizing: border-box;
       }
@@ -981,17 +980,7 @@
   // Header height, so the opening can fill exactly the rest of the first screen on landscape screens.
   (function () {
     var hd = document.querySelector('header');
-    function setH() {
-      if (hd) document.documentElement.style.setProperty('--header-h', hd.offsetHeight + 'px');
-      // Peek: the next section's top padding plus its heading, so the heading ends just inside the
-      // first screen and the line under it starts just below it.
-      var sec = document.getElementById('why-it-works'), h2 = sec && sec.querySelector('h2');
-      if (h2) {
-        var gap = parseFloat(getComputedStyle(h2).marginBottom) || 18;
-        var peek = parseFloat(getComputedStyle(sec).paddingTop) + h2.offsetHeight + gap / 2;
-        document.documentElement.style.setProperty('--peek', peek + 'px');
-      }
-    }
+    function setH() { if (hd) document.documentElement.style.setProperty('--header-h', hd.offsetHeight + 'px'); }
     setH(); addEventListener('resize', setH);
   })();
 
