@@ -776,6 +776,11 @@
       body.adv .feature, body.adv .feature.flip { gap: 128px !important; }
       body.adv .feature .shot img { width: min(300px, 78vw) !important; }
     }
+    /* Every gap between the main blocks comes from the sections' own padding (176px desktop, 128px phones) */
+    body.adv #placement .feature, body.adv .terms-wrap { margin-bottom: 0; }
+    /* Caption under the phone: scaled up with the larger phone */
+    .shot-caption { font-size: 18px; margin-top: 18px; }
+    @media (max-width: 760px) { .shot-caption { font-size: 16px; margin-top: 14px; } }
     /* Everything centered */
     .points, .point { text-align: center; }
     body.adv .feature, body.adv .feature.flip { grid-template-columns: 1fr; gap: 34px; text-align: center; max-width: none; }   /* panel spans the same width as the contact panel */
@@ -821,19 +826,6 @@
 
         <div class="feature">
           <figure class="shot"><span class="trace phone derick"><img src="Derick%20Website%20Ad.webp" alt="A full-screen ad shown during a Screen Tariff ad break" width="1026" height="2048" loading="lazy"></span><figcaption class="shot-caption"><a href="https://beacons.ai/derickleduke" target="_blank" rel="noopener noreferrer">Derick LeDuke, Singer-Songwriter</a></figcaption></figure>
-          <div class="tip-scope glass">
-            <h3>Your ad, your terms</h3>
-            <p>Ad campaigns on Screen Tariff are dynamic and fully customizable.</p>
-            <ul>
-              <li><button type="button" class="tip-link" aria-expanded="false" aria-controls="tip-image">Image</button> or <button type="button" class="tip-link" aria-expanded="false" aria-controls="tip-video">video</button> creative</li>
-              <li>A link to your website or store page</li>
-              <li>Choose how long the ad stays unskippable</li>
-              <li>Set your campaign duration</li>
-              <li>Choose to appear in 15s, 30s, or 60s ad blocks</li>
-            </ul>
-            <span class="tip" id="tip-image" role="tooltip" hidden><strong>Image ads</strong>WebP, PNG, JPG or PDF<br>Recommended ratios: 9:16, 4:5 or 16:9</span>
-            <span class="tip" id="tip-video" role="tooltip" hidden><strong>Video ads</strong>MP4 (H.264 video, AAC audio), 720p, up to 30 seconds, under 3 MB</span>
-          </div>
         </div>
       </section>
 
@@ -853,6 +845,25 @@
           <div class="point">
             <h3>Premium<br>Retention</h3>
             <p>Ads shown on Screen Tariff are predictable and expected by users, so they're watched as part of the routine rather than skipped as an interruption.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Your ad, your terms ── -->
+      <section id="terms">
+        <div class="feature terms-wrap">
+          <div class="tip-scope glass">
+            <h3>Your ad, your terms</h3>
+            <p>Ad campaigns on Screen Tariff are dynamic and fully customizable.</p>
+            <ul>
+              <li><button type="button" class="tip-link" aria-expanded="false" aria-controls="tip-image">Image</button> or <button type="button" class="tip-link" aria-expanded="false" aria-controls="tip-video">video</button> creative</li>
+              <li>A link to your website or store page</li>
+              <li>Choose how long the ad stays unskippable</li>
+              <li>Set your campaign duration</li>
+              <li>Choose to appear in 15s, 30s, or 60s ad blocks</li>
+            </ul>
+            <span class="tip" id="tip-image" role="tooltip" hidden><strong>Image ads</strong>WebP, PNG, JPG or PDF<br>Recommended ratios: 9:16, 4:5 or 16:9</span>
+            <span class="tip" id="tip-video" role="tooltip" hidden><strong>Video ads</strong>MP4 (H.264 video, AAC audio), 720p, up to 30 seconds, under 3 MB</span>
           </div>
         </div>
       </section>
