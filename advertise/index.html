@@ -769,6 +769,13 @@
     /* its line underneath scales up with it (about 1.35x the usual subtext) */
     #placement .section-sub { font-size: clamp(21px, 2.8vw, 28px); line-height: 1.45; }
     @media (orientation: landscape) and (max-height: 600px) { #placement .section-sub { font-size: max(15px, 4.4vh); } }
+    /* Phone and "Your ad, your terms": the same spacing as between the three panels and the contact panel, and a bigger phone */
+    body.adv .feature, body.adv .feature.flip { gap: 176px !important; }
+    body.adv .feature .shot img { width: 380px !important; }
+    @media (max-width: 760px) {
+      body.adv .feature, body.adv .feature.flip { gap: 128px !important; }
+      body.adv .feature .shot img { width: min(300px, 78vw) !important; }
+    }
     /* Everything centered */
     .points, .point { text-align: center; }
     body.adv .feature, body.adv .feature.flip { grid-template-columns: 1fr; gap: 34px; text-align: center; max-width: none; }   /* panel spans the same width as the contact panel */
