@@ -1,5 +1,5 @@
 {
-  "version": 22,
+  "version": 23,
   "rules": { "noRepeatInBreak": true },
   "slotInfo": {
     "primaryInterstitial":    { "name": "Primary Interstitial", "skipChoices": { "15s": [6, 15], "30s+": [6, 15, 30] } },
@@ -8,18 +8,18 @@
   },
   "slots": {
     "primaryInterstitial": [
-      { "type": "admob", "weight": 0, "minBuffer": 30, "platforms": ["android"] },
-      { "id": "derickFlier", "type": "image", "file": "derickleduke_flier.png", "link": "https://beacons.ai/derickleduke", "weight": 0, "skipAfter": [6, 6], "platforms": ["android"] },
-      { "id": "fastPatch", "type": "image", "file": "fast_patch.jpg", "link": "https://www.thefastpatch.com", "weight": 100, "skipAfter": [6, 6], "platforms": ["android"] },
+      { "type": "admob", "weight": 90, "minBuffer": 30, "platforms": ["android"] },
+      { "id": "derickFlier", "type": "image", "file": "derickleduke_flier.png", "link": "https://beacons.ai/derickleduke", "weight": 5, "skipAfter": [6, 6], "platforms": ["android"] },
+      { "id": "fastPatch", "type": "image", "file": "fast_patch.jpg", "link": "https://www.thefastpatch.com", "weight": 5, "skipAfter": [6, 6], "platforms": ["android"] },
 
       { "id": "derickFlier", "weight": 44, "skipAfter": [6, 6], "platforms": ["ios"] },
       { "id": "fastPatch", "weight": 44, "skipAfter": [6, 6], "platforms": ["ios"] },
       { "id": "screenTariffGraphic", "type": "image", "file": "screen_tariff_graphic.png", "link": "https://screentariff.com/", "weight": 12, "skipAfter": [6, 6], "platforms": ["ios"] }
     ],
     "secondaryInterstitialA": [
-      { "id": "derickFlier", "weight": 25, "skipAfter": 6, "platforms": ["ios"] },
-      { "id": "fastPatch", "weight": 25, "skipAfter": 6, "platforms": ["ios"] },
-      { "type": "none", "weight": 50, "platforms": ["ios"] }
+      { "id": "derickFlier", "weight": 25, "skipAfter": 6 },
+      { "id": "fastPatch", "weight": 25, "skipAfter": 6 },
+      { "type": "none", "weight": 50 }
     ],
     "secondaryInterstitialB": [
       { "id": "screenTariffGraphic", "weight": 0, "skipAfter": 6 }
