@@ -1,5 +1,5 @@
 {
-  "version": 18,
+  "version": 19,
   "rules": { "noRepeatInBreak": true },
   "slotInfo": {
     "primaryInterstitial":    { "name": "Primary Interstitial", "skipChoices": { "15s": [6, 15], "30s+": [6, 15, 30] } },
