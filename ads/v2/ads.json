@@ -1,5 +1,5 @@
 {
-  "version": 20,
+  "version": 21,
   "rules": { "noRepeatInBreak": true },
   "slotInfo": {
     "primaryInterstitial":    { "name": "Primary Interstitial", "skipChoices": { "15s": [6, 15], "30s+": [6, 15, 30] } },
@@ -17,11 +17,9 @@
       { "id": "screenTariffGraphic", "type": "image", "file": "screen_tariff_graphic.png", "link": "https://screentariff.com/", "weight": 12, "skipAfter": [6, 6], "platforms": ["ios"] }
     ],
     "secondaryInterstitialA": [
-      { "id": "derickFlier", "weight": 25, "skipAfter": 6, "platforms": ["ios"] },
-      { "id": "fastPatch", "weight": 25, "skipAfter": 6, "platforms": ["ios"] },
-      { "type": "none", "weight": 50, "platforms": ["ios"] },
-
-      { "id": "fastPatch", "weight": 100, "skipAfter": 6, "platforms": ["android"] }
+      { "id": "derickFlier", "weight": 25, "skipAfter": 6 },
+      { "id": "fastPatch", "weight": 25, "skipAfter": 6 },
+      { "type": "none", "weight": 50 }
     ],
     "secondaryInterstitialB": [
       { "id": "screenTariffGraphic", "weight": 0, "skipAfter": 6 }
